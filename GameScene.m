@@ -8,6 +8,13 @@
 
 #import "GameScene.h"
 long myForce = 0;
+long mySpringStrength = 10;
+long myVortexStrength = 8;
+//long myVortexSpringStrength = 1;
+
+
+
+
 SKSpriteNode *myColorSprite;
 @implementation GameScene
 
@@ -22,13 +29,13 @@ SKSpriteNode *myColorSprite;
     [myTopControl setSelectedSegmentIndex:-1];
     [myTopControl setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
     [self.view addSubview:myTopControl];
-    NSArray *myBottomControlValues  = @[@"Vortex Field",@"Spring Field"] ;
+    NSArray *myBottomControlValues  = @[@"+",@"-",@"Vortex Field",@"Spring Field",@"+",@"-"] ;
     UISegmentedControl *myBottomControl = [[ UISegmentedControl alloc] initWithItems:myBottomControlValues ];
     [myBottomControl setFrame:CGRectMake(0, self.view.bounds.size.height - 50, self.view.bounds.size.width, 50)];
     [myBottomControl setApportionsSegmentWidthsByContent:YES];
     [myBottomControl addTarget:self action:@selector(myBottomSwitchChanged:) forControlEvents:UIControlEventValueChanged ];
-    [myBottomControl setSelectedSegmentIndex:1];
-    myForce = 1;
+    [myBottomControl setSelectedSegmentIndex:3];
+    myForce = 3;
     [self.view addSubview:myBottomControl];
     /* Setup your scene here */
     SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
@@ -105,7 +112,7 @@ SKSpriteNode *myColorSprite;
                                                      CGRectGetMaxY(self.frame)-30);
                 myColorSprite.physicsBody = [ SKPhysicsBody bodyWithRectangleOfSize:myColorSprite.size];
                 myColorSprite.physicsBody.mass = 1;
-                myColorSprite.physicsBody.restitution = 1.2;
+                myColorSprite.physicsBody.restitution = .9;
                 myColorSprite.physicsBody.affectedByGravity = YES;
                 myColorSprite.physicsBody.linearDamping = 3.0;
                 myColorSprite.blendMode = SKBlendModeReplace ;
@@ -232,14 +239,14 @@ SKSpriteNode *myColorSprite;
         [mySpringNodeEmitter runAction:[SKAction repeatAction:mySpringNodeFade count:10]];
         //        NSLog(@"NOW myforce = %ld",myForce);
         switch (myForce) {
-            case 0:
+            case 2:
             {
                 NSString *myVortexEmitterPath = [[NSBundle mainBundle] pathForResource:@"VortexParticle" ofType:@"sks"] ;
 //                SKPhysicsBody *myVortexEmitterPhysicsBody = [SKPhysicsBody bodyWithCircleOfRadius:5];
                 SKEmitterNode *myVortexEmitterNode = [NSKeyedUnarchiver unarchiveObjectWithFile:myVortexEmitterPath];
                 SKFieldNode *myVortexFieldNode = [SKFieldNode vortexField];
                 [myVortexFieldNode setDirection:1.0];
-                [myVortexFieldNode setStrength: 8 ];
+                [myVortexFieldNode setStrength: myVortexStrength ];
                 [myVortexFieldNode setFalloff: 1 ];
 //                [myVortexEmitterNode setPhysicsBody:myVortexEmitterPhysicsBody];
 //                [myVortexEmitterNode.physicsBody setLinearDamping:3];
@@ -248,15 +255,15 @@ SKSpriteNode *myColorSprite;
                 [myPositionSprite addChild:myEmitterNode];
                 [myPositionSprite addChild:myVortexFieldNode];
                 [myPositionSprite addChild:myVortexEmitterNode];
-                [mySpringFieldNode setStrength: 10 ];
+                [mySpringFieldNode setStrength: mySpringStrength ];
                 [myPositionSprite addChild:mySpringFieldNode];
                 [self addChild:myPositionSprite];
                 [myPositionSprite runAction:mySlowSpin];
                 break;
             }
-            case 1:
+            case 3:
             {
-                [mySpringFieldNode setStrength: 10 ];
+                [mySpringFieldNode setStrength: mySpringStrength ];
                 [myPositionSprite setPosition:location];
                 [myPositionSprite runAction:myEffectSpriteAction];
                 [myPositionSprite addChild:mySpringNodeEmitter];
@@ -273,8 +280,27 @@ SKSpriteNode *myColorSprite;
 - (IBAction)myBottomSwitchChanged:(UISegmentedControl *)sender{
     long myValue = sender.selectedSegmentIndex;
     //    NSLog(@"Value = %ld",myValue);
-    //    [sender setSelectedSegmentIndex:-1];
-    myForce = myValue;
+        [sender setSelectedSegmentIndex:myForce];
+    switch (myValue) {
+        case 0:
+            myVortexStrength-=2;
+            break;
+        case 1:
+            myVortexStrength+=2;
+            break;
+        case 2:
+            myForce = myValue;
+            break;
+        case 3:
+            myForce = myValue;
+            break;
+        case 4:
+            mySpringStrength-=10;
+            break;
+        default:
+            mySpringStrength+=10;
+            break;
+    }
 }
 
 -(void)update:(CFTimeInterval)currentTime {

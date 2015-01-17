@@ -34,7 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7C0D0AA41A52C9480016A961 /* Sprites and Forces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sprites and Forces.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C0D0AA41A52C9480016A961 /* rzForcesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rzForcesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C0D0AA81A52C9480016A961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C0D0AA91A52C9480016A961 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7C0D0AAB1A52C9480016A961 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -44,7 +44,7 @@
 		7C0D0AB41A52C9490016A961 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		7C0D0AB71A52C9490016A961 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7C0D0ABC1A52C9490016A961 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		7C0D0AC21A52C9490016A961 /* Sprites and Forces Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sprites and Forces Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C0D0AC21A52C9490016A961 /* rzForcesDemo Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "rzForcesDemo Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C0D0AC71A52C9490016A961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C0D0AC81A52C9490016A961 /* rzForcesDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rzForcesDemoTests.m; sourceTree = "<group>"; };
 		7C0D0AD21A52CC740016A961 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = ../GameScene.m; sourceTree = "<group>"; };
@@ -87,8 +87,8 @@
 		7C0D0AA51A52C9480016A961 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7C0D0AA41A52C9480016A961 /* Sprites and Forces.app */,
-				7C0D0AC21A52C9490016A961 /* Sprites and Forces Tests.xctest */,
+				7C0D0AA41A52C9480016A961 /* rzForcesDemo.app */,
+				7C0D0AC21A52C9490016A961 /* rzForcesDemo Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -159,7 +159,7 @@
 			);
 			name = rzForcesDemo;
 			productName = rzForcesDemo;
-			productReference = 7C0D0AA41A52C9480016A961 /* Sprites and Forces.app */;
+			productReference = 7C0D0AA41A52C9480016A961 /* rzForcesDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7C0D0AC11A52C9490016A961 /* rzForcesDemo Tests */ = {
@@ -177,7 +177,7 @@
 			);
 			name = "rzForcesDemo Tests";
 			productName = rzForcesDemoTests;
-			productReference = 7C0D0AC21A52C9490016A961 /* Sprites and Forces Tests.xctest */;
+			productReference = 7C0D0AC21A52C9490016A961 /* rzForcesDemo Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
