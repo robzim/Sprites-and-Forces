@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -13,7 +13,13 @@
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qwM-4i-jRX">
                     <rect key="frame" x="79" y="121" width="385" height="280"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <string key="text">Tap the screen to place force fields.  Tap more than once to create many force fields and watch the effects on the sprites on the screen.  Tap on buttons at the top of the screen to drop sprites on the screen.  Tap on buttons at the bottom of the screen to change between "vortex" and "spring" force fields.</string>
+                    <string key="text">Tap on the screen to create many force fields and watch the effects on the little colored "sprites" on the screen.
+
+Tap on buttons at the top of the screen to drop sprites on the screen.  Tap on buttons at the bottom of the screen to change between "vortex" and "spring" force fields.
+
+Tap on the + and - Buttons on the Bottom Left to Increase or Decrease the Power of the Vortex Field.
+
+Tap on the + and - Buttons on the Bottom Right to Increase or Decrease the Power of the Gravity Field.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     <variation key="widthClass=compact" fixedFrame="YES">

@@ -29,10 +29,10 @@ SKSpriteNode *myColorSprite;
     [myTopControl setSelectedSegmentIndex:-1];
     [myTopControl setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
     [self.view addSubview:myTopControl];
-    NSArray *myBottomControlValues  = @[@"+",@"-",@"Vortex Field",@"Spring Field",@"+",@"-"] ;
+    NSArray *myBottomControlValues  = @[@"+",@"-",@"Vortex",@"Gravity",@"+",@"-"] ;
     UISegmentedControl *myBottomControl = [[ UISegmentedControl alloc] initWithItems:myBottomControlValues ];
     [myBottomControl setFrame:CGRectMake(0, self.view.bounds.size.height - 50, self.view.bounds.size.width, 50)];
-    [myBottomControl setApportionsSegmentWidthsByContent:YES];
+    [myBottomControl setApportionsSegmentWidthsByContent:NO];
     [myBottomControl addTarget:self action:@selector(myBottomSwitchChanged:) forControlEvents:UIControlEventValueChanged ];
     [myBottomControl setSelectedSegmentIndex:3];
     myForce = 3;
@@ -42,7 +42,7 @@ SKSpriteNode *myColorSprite;
     myLabel.text = @"Sprites and Forces!  Tap Screen to Place Force Fields";
     myLabel.fontSize = 18;
     myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                   CGRectGetMidY(self.frame));
+                                   CGRectGetMidY(self.frame)+200);
     [self addChild:myLabel];
     [myLabel runAction:[SKAction sequence:@[ [SKAction waitForDuration:3.0],
                                              [SKAction removeFromParent],
@@ -54,7 +54,60 @@ SKSpriteNode *myColorSprite;
     NSString *myFireFliesEmitterNodePath = [[NSBundle mainBundle] pathForResource:@"myFireFlies" ofType:@"sks"];
     SKEmitterNode *myFireFliesEmitterNode =  [NSKeyedUnarchiver unarchiveObjectWithFile:myFireFliesEmitterNodePath];
     [myHolderNode addChild:myFireFliesEmitterNode];
+    [self makeMyInstructionLabels];
 }
+
+
+-(void)makeMyInstructionLabels{
+    SKLabelNode *myLabel1 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    [myLabel1 setText:@"Tap Top Buttons for Colors, Sprite, Pictures"];
+    //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
+    [myLabel1 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))];
+    [myLabel1 setFontSize:16];
+    [myLabel1 setFontColor:[UIColor redColor]];
+    [myLabel1 setAlpha:0.0];
+    [self addChild:myLabel1];
+    [myLabel1 runAction:[SKAction sequence:@[[SKAction waitForDuration:1.0],
+                                             [SKAction fadeInWithDuration:2.0],]]];
+    
+    
+    
+    SKLabelNode *myLabel2 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
+    [myLabel2 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-20)];
+    [myLabel2 setFontSize:16];
+    [myLabel2 setFontColor:[UIColor redColor]];
+    [myLabel2 setText:@"Top Top Buttons to Show or Hide Forces"];
+    [myLabel2 setAlpha:0.0];
+    [self addChild:myLabel2];
+    [myLabel2 runAction:[SKAction sequence:@[[SKAction waitForDuration:1.0],
+                                             [SKAction fadeInWithDuration:3.0],]]];
+    
+    SKLabelNode *myLabel3 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
+    [myLabel3 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-40)];
+    [myLabel3 setFontSize:16];
+    [myLabel3 setFontColor:[UIColor redColor]];
+    [myLabel3 setText:@"Tap Bottom Buttons for Vortex or Gravity Force"];
+    [myLabel3 setAlpha:0.0];
+    [self addChild:myLabel3];
+    [myLabel3 runAction:[SKAction sequence:@[[SKAction waitForDuration:1.0],
+                                             [SKAction fadeInWithDuration:4.0],]]];
+    
+    
+    SKLabelNode *myLabel4 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
+    [myLabel4 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-60)];
+    [myLabel4 setFontSize:16];
+    [myLabel4 setFontColor:[UIColor redColor]];
+    [myLabel4 setText:@"Tap + or - to Increase or Decrease Force"];
+    [myLabel4 setAlpha:0.0];
+    [self addChild:myLabel4];
+    [myLabel4 runAction:[SKAction sequence:@[[SKAction waitForDuration:1.0],
+                                             [SKAction fadeInWithDuration:5.0],]]];
+    
+}
+
 
 
 - (IBAction)myTopSwitchChanged:(UISegmentedControl *)sender{
@@ -248,6 +301,7 @@ SKSpriteNode *myColorSprite;
                 [myVortexFieldNode setDirection:1.0];
                 [myVortexFieldNode setStrength: myVortexStrength ];
                 [myVortexFieldNode setFalloff: 1 ];
+                [myVortexFieldNode setName:@"vortex"];
 //                [myVortexEmitterNode setPhysicsBody:myVortexEmitterPhysicsBody];
 //                [myVortexEmitterNode.physicsBody setLinearDamping:3];
                 [myPositionSprite runAction:myEffectSpriteAction];
@@ -264,6 +318,7 @@ SKSpriteNode *myColorSprite;
             case 3:
             {
                 [mySpringFieldNode setStrength: mySpringStrength ];
+                [mySpringFieldNode setName:@"spring"];
                 [myPositionSprite setPosition:location];
                 [myPositionSprite runAction:myEffectSpriteAction];
                 [myPositionSprite addChild:mySpringNodeEmitter];
@@ -280,31 +335,42 @@ SKSpriteNode *myColorSprite;
 - (IBAction)myBottomSwitchChanged:(UISegmentedControl *)sender{
     long myValue = sender.selectedSegmentIndex;
     //    NSLog(@"Value = %ld",myValue);
-        [sender setSelectedSegmentIndex:myForce];
     switch (myValue) {
         case 0:
             myVortexStrength-=2;
+            [sender setSelectedSegmentIndex:myForce];
             break;
         case 1:
             myVortexStrength+=2;
+            [sender setSelectedSegmentIndex:myForce];
             break;
         case 2:
             myForce = myValue;
+            [sender setSelectedSegmentIndex:myForce];
             break;
         case 3:
             myForce = myValue;
+            [sender setSelectedSegmentIndex:myForce];
             break;
         case 4:
             mySpringStrength-=10;
+            [sender setSelectedSegmentIndex:myForce];
             break;
         default:
             mySpringStrength+=10;
+            [sender setSelectedSegmentIndex:myForce];
             break;
     }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
+//    [self enumerateChildNodesWithName:@"vortex" usingBlock:^(SKFieldNode *node, BOOL *stop) {
+//        [node setStrength:myVortexStrength ];
+//    }];
+//    [self enumerateChildNodesWithName:@"spring" usingBlock:^(SKFieldNode *node, BOOL *stop) {
+//        [node setStrength:mySpringStrength ];
+//    }];
 }
 
 @end
