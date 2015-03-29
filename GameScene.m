@@ -7,10 +7,10 @@
 //
 
 #import "GameScene.h"
-long myForce = 0;
+long myForceIndex = 0;
 long mySpringStrength = -1;
 long mySpringStartStrength = -1;
-long myGravityStrength = 1;
+long myGravityStrength = 1.1;
 long myGravityFalloff = 2.0 ;
 long myVortexStrength = 10.0;
 long myVortexStartStrength = 10.0 ;
@@ -18,11 +18,14 @@ long myRadialGravityStrength = 10.0;
 long myRadialGravityFalloff = 0.5;
 long mySpringFieldFalloff = 3.0;
 long myVortexFalloff = 2.5;
-int myFieldsIndex = 4;
-int myControlHeight = 50;
+int myForceVisibilityIndex = 4;
+int myControlHeight = 40;
 int myColorSpriteDuration = 120;
 //long myVortexSpringStrength = 1;
-
+id myTopControl;
+id myBottomControl;
+float myTempMass = 0.0;
+float myMassIncrement = 10.0;
 
 
 
@@ -32,18 +35,18 @@ SKSpriteNode *myColorSprite;
 
 -(void)didMoveToView:(SKView *)view {
 
-//    UISwipeGestureRecognizer *myUpSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(myUpSwipeAction)];
-//    [myUpSwipeGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionUp];
-//    [self.view addGestureRecognizer:myUpSwipeGestureRecognizer];
-//    
-//    
-//    UISwipeGestureRecognizer *myDownSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(myDownSwipeAction)];
-//    [myDownSwipeGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionDown];
-//    [self.view addGestureRecognizer:myDownSwipeGestureRecognizer];
-//    
-//    
-//    
-//    
+    UISwipeGestureRecognizer *myUpSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(myUpSwipeAction)];
+    [myUpSwipeGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionUp];
+    [self.view addGestureRecognizer:myUpSwipeGestureRecognizer];
+    
+    
+    UISwipeGestureRecognizer *myDownSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(myDownSwipeAction)];
+    [myDownSwipeGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionDown];
+    [self.view addGestureRecognizer:myDownSwipeGestureRecognizer];
+    
+    
+    
+    
     UISwipeGestureRecognizer *myLeftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(myLeftSwipeAction)];
     [myLeftSwipeGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft];
     [self.view addGestureRecognizer:myLeftSwipeGestureRecognizer];
@@ -56,26 +59,34 @@ SKSpriteNode *myColorSprite;
     
     NSArray *myBottomControlValues  = @[@"V+",@"V-",@"Vortex",@"Spring",@"Gravity",@"S+",@"S-"] ;
     UISegmentedControl *myBottomControl = [[ UISegmentedControl alloc] initWithItems:myBottomControlValues ];
-    [myBottomControl setFrame:CGRectMake(0, self.view.bounds.size.height - myControlHeight , self.view.bounds.size.width , myControlHeight  )];
+    [myBottomControl setFrame:CGRectMake(0, self.view.bounds.size.height - myControlHeight , self.view.bounds.size.width  , myControlHeight  )];
     [myBottomControl setApportionsSegmentWidthsByContent:YES];
     [myBottomControl addTarget:self action:@selector(myBottomSwitchChanged:) forControlEvents:UIControlEventValueChanged ];
-    [myBottomControl setSelectedSegmentIndex:3];
-    myForce = 3;
+    myForceIndex = 4;
+    [myBottomControl setSelectedSegmentIndex:myForceIndex];
     [self.view addSubview:myBottomControl];
 
-    
+     
     
     NSArray *myTopControlValues  = @[@"Colors",@"Zim",@"Family", @"Forces" , @"Hide Forces", @"Quit"] ;
     UISegmentedControl *myTopControl = [[ UISegmentedControl alloc] initWithItems:myTopControlValues ];
     //int myTopControlSeqmentWidth = 85;
     [myTopControl addTarget:self action:@selector(myTopSwitchChanged:) forControlEvents:UIControlEventValueChanged ];
     //[myTopControl setWidth:myTopControlSeqmentWidth forSegmentAtIndex:4];
-    [myTopControl setSelectedSegmentIndex:myFieldsIndex];
+    [myTopControl setSelectedSegmentIndex:myForceVisibilityIndex];
 //    [myTopControl setFrame:CGRectMake(0, 0, self.view.bounds.size.width, myControlHeight)];
     [myTopControl setFrame:CGRectMake(0, 0, self.view.bounds.size.width, myControlHeight)];
     [myTopControl setApportionsSegmentWidthsByContent:YES];
     [self.view addSubview:myTopControl];
     /* Setup your scene here */
+    
+    
+    
+    //
+    //
+    // rz fireflies emitter
+    //
+    //
 //    SKSpriteNode *myHolderNode = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeZero];
 //    [myHolderNode setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))];
 //    [self addChild:myHolderNode];
@@ -104,6 +115,16 @@ SKSpriteNode *myColorSprite;
 
 
 -(void)makeMyInstructionLabels{
+    
+    SKAction *myLabelAction = [SKAction sequence:@[[SKAction waitForDuration:1.0],
+                                                                           [SKAction fadeInWithDuration:2.0],
+                                                                           [SKAction waitForDuration:5.0],
+                                                                           [SKAction fadeOutWithDuration:1.0],
+                                                                           [SKAction waitForDuration:10.0],]];
+
+    
+    
+    
     SKLabelNode *myLabel1 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     [myLabel1 setText:@"Top Left Buttons for Colors, Sprite, Pictures"];
     //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
@@ -112,9 +133,7 @@ SKSpriteNode *myColorSprite;
     [myLabel1 setFontColor:[UIColor redColor]];
     [myLabel1 setAlpha:0.0];
     [self addChild:myLabel1];
-    [myLabel1 runAction:[SKAction sequence:@[[SKAction waitForDuration:1.0],
-                                             [SKAction fadeInWithDuration:2.0],]]];
-    
+    [myLabel1 runAction:[SKAction repeatActionForever:myLabelAction]];
     
     
     SKLabelNode *myLabel2 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
@@ -125,8 +144,7 @@ SKSpriteNode *myColorSprite;
     [myLabel2 setText:@"Top Right Buttons to Show or Hide Forces"];
     [myLabel2 setAlpha:0.0];
     [self addChild:myLabel2];
-    [myLabel2 runAction:[SKAction sequence:@[[SKAction waitForDuration:1.0],
-                                             [SKAction fadeInWithDuration:3.0],]]];
+    [myLabel2 runAction:[SKAction repeatActionForever:myLabelAction]];
     
     SKLabelNode *myLabel3 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
@@ -136,8 +154,7 @@ SKSpriteNode *myColorSprite;
     [myLabel3 setText:@"Bottom Middle Buttons for Vortex or Gravity Force"];
     [myLabel3 setAlpha:0.0];
     [self addChild:myLabel3];
-    [myLabel3 runAction:[SKAction sequence:@[[SKAction waitForDuration:1.0],
-                                             [SKAction fadeInWithDuration:4.0],]]];
+    [myLabel3 runAction:[SKAction repeatActionForever:myLabelAction]];
     
     
     SKLabelNode *myLabel4 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
@@ -148,8 +165,7 @@ SKSpriteNode *myColorSprite;
     [myLabel4 setText:@"+ or - to Increase or Decrease Force"];
     [myLabel4 setAlpha:0.0];
     [self addChild:myLabel4];
-    [myLabel4 runAction:[SKAction sequence:@[[SKAction waitForDuration:1.0],
-                                             [SKAction fadeInWithDuration:5.0],]]];
+    [myLabel4 runAction:[SKAction repeatActionForever:myLabelAction]];
     
 
 
@@ -161,8 +177,7 @@ SKSpriteNode *myColorSprite;
     [myLabel5 setText:@"Swipe Right to Clear the Screen"];
     [myLabel5 setAlpha:0.0];
     [self addChild:myLabel5];
-    [myLabel5 runAction:[SKAction sequence:@[[SKAction waitForDuration:1.0],
-                                             [SKAction fadeInWithDuration:5.0],]]];
+    [myLabel5 runAction:[SKAction repeatActionForever:myLabelAction]];
 
 
     SKLabelNode *myLabel6 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
@@ -173,9 +188,28 @@ SKSpriteNode *myColorSprite;
     [myLabel6 setText:@"Swipe Left to Reset Forces to Default Values"];
     [myLabel6 setAlpha:0.0];
     [self addChild:myLabel6];
-    [myLabel6 runAction:[SKAction sequence:@[[SKAction waitForDuration:1.0],
-                                             [SKAction fadeInWithDuration:5.0],]]];
+    [myLabel6 runAction:[SKAction repeatActionForever:myLabelAction]];
 
+
+    SKLabelNode *myLabel7 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
+    [myLabel7 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-140)];
+    [myLabel7 setFontSize:16];
+    [myLabel7 setFontColor:[UIColor redColor]];
+    [myLabel7 setText:@"Swipe Up to Make Color Blocks Heavier"];
+    [myLabel7 setAlpha:0.0];
+    [self addChild:myLabel7];
+    [myLabel7 runAction:[SKAction repeatActionForever:myLabelAction]];
+    
+    SKLabelNode *myLabel8 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
+    [myLabel8 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-160)];
+    [myLabel8 setFontSize:16];
+    [myLabel8 setFontColor:[UIColor redColor]];
+    [myLabel8 setText:@"Swipe Down to Make Color Blocks Lighter"];
+    [myLabel8 setAlpha:0.0];
+    [self addChild:myLabel8];
+    [myLabel8 runAction:[SKAction repeatActionForever:myLabelAction]];
     
 }
 
@@ -250,7 +284,7 @@ SKSpriteNode *myColorSprite;
                 [myColorSprite runAction:mycolorSpriteAction];
             }  // end of mySpriteCounter Loop
         }  // end of myNUmberOfLoops Loop
-        [sender setSelectedSegmentIndex:myFieldsIndex];
+        [sender setSelectedSegmentIndex:myForceVisibilityIndex];
         
     } // end of if myValue == 0
     
@@ -271,7 +305,7 @@ SKSpriteNode *myColorSprite;
         [colorsprite runAction:mycolorSpriteAction];
         
         [self addChild:colorsprite];
-        [sender setSelectedSegmentIndex:myFieldsIndex];
+        [sender setSelectedSegmentIndex:myForceVisibilityIndex];
     }
     
     
@@ -314,20 +348,20 @@ SKSpriteNode *myColorSprite;
             }
         } // end of loopcount loop
         
-        [sender setSelectedSegmentIndex:myFieldsIndex];
+        [sender setSelectedSegmentIndex:myForceVisibilityIndex];
     }
     else if (myValue == 3) {
         //
         // show forces
-        myFieldsIndex = 3;
+        myForceVisibilityIndex = 3;
             [self.view setShowsFields:YES];
-            [sender setSelectedSegmentIndex:myFieldsIndex];
+            [sender setSelectedSegmentIndex:myForceVisibilityIndex];
         }
     
     else if (myValue == 4) {
-        myFieldsIndex = 4;
+        myForceVisibilityIndex = 4;
         [self.view setShowsFields:NO];
-        [sender setSelectedSegmentIndex:myFieldsIndex];
+        [sender setSelectedSegmentIndex:myForceVisibilityIndex];
     }
     else if (myValue == 5){
         exit(0);
@@ -343,10 +377,10 @@ SKSpriteNode *myColorSprite;
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
-//        SKAction *myEffectSpriteAction = [SKAction sequence:@[
-//                                                              [SKAction waitForDuration:10.0 withRange:5.5],
-//                                                              [SKAction removeFromParent],
-//                                                              ]];
+        //        SKAction *myEffectSpriteAction = [SKAction sequence:@[
+        //                                                              [SKAction waitForDuration:10.0 withRange:5.5],
+        //                                                              [SKAction removeFromParent],
+        //                                                              ]];
         CGPoint location = [touch locationInNode:self];
         SKSpriteNode *myPositionSprite = [[SKSpriteNode alloc] initWithColor:[UIColor blackColor] size:CGSizeMake(10, 10)];
         [myPositionSprite setPosition:location];
@@ -356,18 +390,18 @@ SKSpriteNode *myColorSprite;
         SKFieldNode *mySpringFieldNode = [SKFieldNode springField];
         [mySpringFieldNode setStrength:myGravityStrength];
         SKSpriteNode *myForceImage = [SKSpriteNode spriteNodeWithImageNamed:@"rzForces Image.png"];
-//        [myForceImage setAlpha:.3];
-        [myForceImage setScale:.6];
+        //        [myForceImage setAlpha:.3];
+        //        [myForceImage setScale:.6];
         
         
-//        SKAction *myGravityAction = [SKAction sequence:@[
-//                                                              [SKAction waitForDuration:10.0 withRange:5.5],
-//                                                              [SKAction removeFromParent],
-//                                                              ]];
+        //        SKAction *myGravityAction = [SKAction sequence:@[
+        //                                                              [SKAction waitForDuration:10.0 withRange:5.5],
+        //                                                              [SKAction removeFromParent],
+        //                                                              ]];
         SKAction *mySlowSpin = [SKAction rotateByAngle:M_PI*50 duration:myColorSpriteDuration];
         //        NSLog(@"NOW myforce = %ld",myForce);
         
-        switch (myForce) {
+        switch (myForceIndex) {
             case 2:
             {
                 //
@@ -378,25 +412,26 @@ SKSpriteNode *myColorSprite;
                 //
                 //
                 NSString *myVortexEmitterPath = [[NSBundle mainBundle] pathForResource:@"VortexParticle" ofType:@"sks"] ;
-//                SKPhysicsBody *myVortexEmitterPhysicsBody = [SKPhysicsBody bodyWithCircleOfRadius:5];
+                //                SKPhysicsBody *myVortexEmitterPhysicsBody = [SKPhysicsBody bodyWithCircleOfRadius:1];
                 SKEmitterNode *myVortexEmitterNode = [NSKeyedUnarchiver unarchiveObjectWithFile:myVortexEmitterPath];
                 SKFieldNode *myVortexFieldNode = [SKFieldNode vortexField];
                 //[myVortexFieldNode setDirection:1.0];
-                if (myVortexStrength == 0) {
-                    [myVortexFieldNode setStrength: myVortexStartStrength ];
-                }
-                else [myVortexFieldNode setStrength: myVortexStrength ];
+//                if (myVortexStrength == 0) {
+//                    [myVortexFieldNode setStrength: myVortexStartStrength ];
+//                }
+//                else [myVortexFieldNode setStrength: myVortexStrength ];
                 [myVortexFieldNode setFalloff: myVortexFalloff ];
                 [myVortexFieldNode setName:@"vortex"];
-//                [myVortexEmitterNode setPhysicsBody:myVortexEmitterPhysicsBody];
-//                [myVortexEmitterNode.physicsBody setLinearDamping:3];
-//                [myPositionSprite runAction:myEffectSpriteAction];
-//                [myPositionSprite addChild:myForceImage];
+                //                [myVortexEmitterNode setPhysicsBody:myVortexEmitterPhysicsBody];
+                //                [myVortexEmitterNode.physicsBody setLinearDamping:3];
+                //                [myPositionSprite runAction:myEffectSpriteAction];
+                //                [myPositionSprite addChild:myForceImage];
                 [myPositionSprite addChild:myEmitterNode];
+                [myPositionSprite setName:@"vortexposition"];
                 [myPositionSprite addChild:myVortexFieldNode];
                 [myPositionSprite addChild:myVortexEmitterNode];
-//                [mySpringFieldNode setStrength: mySpringStrength ];
-//                [myPositionSprite addChild:mySpringFieldNode];
+                //                [mySpringFieldNode setStrength: mySpringStrength ];
+                //                [myPositionSprite addChild:mySpringFieldNode];
                 [self addChild:myPositionSprite];
                 [myPositionSprite runAction:mySlowSpin];
                 break;
@@ -415,14 +450,15 @@ SKSpriteNode *myColorSprite;
                                                                   ]];
                 [mySpringNodeEmitter setScale:1.5];
                 [mySpringNodeEmitter runAction:[SKAction repeatActionForever:mySpringNodeFade]];
-
+                
                 //
                 SKFieldNode *mySpringFieldNode = [SKFieldNode springField];
                 [mySpringFieldNode setStrength: mySpringStrength ];
                 [mySpringFieldNode setFalloff:mySpringFieldFalloff];
                 [mySpringFieldNode setName:@"spring"];
                 [myPositionSprite setPosition:location];
-//                [myPositionSprite runAction:myEffectSpriteAction];
+                //                [myPositionSprite runAction:myEffectSpriteAction];
+                [myPositionSprite setName:@"springposition"];
                 [myPositionSprite addChild:mySpringNodeEmitter];
                 [myPositionSprite addChild:mySpringFieldNode];
                 [self addChild:myPositionSprite];
@@ -434,14 +470,24 @@ SKSpriteNode *myColorSprite;
                 //
                 //
                 //
+                [ myForceImage setAlpha:0.0];
                 // rz gravity
                 //
+                
                 //
-                SKAction *myGravityAction = [SKAction sequence:@[
-                                                                 [SKAction fadeInWithDuration:(NSTimeInterval) 0.05],
-                                                                 [SKAction fadeOutWithDuration:(NSTimeInterval) 1.75],
-                                                                 ]];
-
+                //                SKAction myNewGravityAction = [SKAction runAction: onChildWithName:<#(NSString *)#>]
+                
+                SKAction *myG = [SKAction group:@[
+                                                  [SKAction fadeAlphaTo:0.00 duration:0.0],
+                                                  [SKAction scaleTo: 1.0 duration:0.0],
+                                                  ]];
+                
+                SKAction *myG2 = [SKAction group:@[
+                                                   [SKAction scaleTo:0.01 duration:0.75],
+                                                   [SKAction fadeAlphaTo:0.8 duration:0.75],
+                                                  ]];
+                
+                
                 SKFieldNode *myRadialGravityNode = [SKFieldNode radialGravityField ];
                 [myRadialGravityNode setStrength:myRadialGravityStrength];
                 [myRadialGravityNode setName:@"gravity"];
@@ -449,10 +495,13 @@ SKSpriteNode *myColorSprite;
                 [myPositionSprite addChild:myForceImage];
                 [myPositionSprite addChild:myRadialGravityNode];
                 [self addChild:myPositionSprite];
-                [myPositionSprite runAction:[SKAction repeatActionForever:myGravityAction]];
+                [myForceImage runAction:[SKAction repeatActionForever: [ SKAction sequence:@[
+                                                                                                 myG,myG2,
+                                                                                                 ]]]];
+                                                                            
                 break;
             }
-
+                
             default:
                 break;
         }
@@ -462,60 +511,97 @@ SKSpriteNode *myColorSprite;
 
 - (IBAction)myBottomSwitchChanged:(UISegmentedControl *)sender{
     long myValue = sender.selectedSegmentIndex;
-//    myVortexStrength = myVortexStartStrength;
-    //    NSLog(@"Value = %ld",myValue);
+    //NSlog(@"Value = %ld",myValue);
     switch (myValue) {
         case 0:
             myVortexStrength-= 10;
-
-            [self enumerateChildNodesWithName:@"vortex" usingBlock:^(SKNode *node, BOOL *stop) {
-                [ (SKFieldNode *) node setStrength:myVortexStrength ];
+            [self enumerateChildNodesWithName:@"vortexposition" usingBlock:^(SKNode *node, BOOL *stop) {
+                //NSlog(@"Found Vortex Position");
+                [node enumerateChildNodesWithName:@"vortex" usingBlock:^(SKNode *node, BOOL *stop) {
+                    //NSlog(@"Found Vortex");
+                    //NSlog(@"Node Vortex Strength= %ld", myVortexStrength);
+                    [  (SKFieldNode *) node  setStrength:myVortexStrength ];
+                }];
             }];
-
-            [sender setSelectedSegmentIndex:myForce];
+            [sender setSelectedSegmentIndex:myForceIndex];
             break;
         case 1:
             myVortexStrength+= 10;
-            [self enumerateChildNodesWithName:@"vortex" usingBlock:^(SKNode *node, BOOL *stop) {
-                [ (SKFieldNode *) node setStrength:myVortexStrength ];
+            [self enumerateChildNodesWithName:@"vortexposition" usingBlock:^(SKNode *node, BOOL *stop) {
+                //NSlog(@"Found Vortex Position");
+                [node enumerateChildNodesWithName:@"vortex" usingBlock:^(SKNode *node, BOOL *stop) {
+                    //NSlog(@"Found Vortex");
+                    //NSlog(@"Node Vortex Strength= %ld", myVortexStrength);
+                    [  (SKFieldNode *) node  setStrength:myVortexStrength ];
+                }];
             }];
-            [sender setSelectedSegmentIndex:myForce];
+            [sender setSelectedSegmentIndex:myForceIndex];
             break;
         case 2:
-            myForce = myValue;
-            [sender setSelectedSegmentIndex:myForce];
+            myForceIndex = myValue;
+            [sender setSelectedSegmentIndex:myForceIndex];
             break;
         case 3:
-            myForce = myValue;
-            [sender setSelectedSegmentIndex:myForce];
+            myForceIndex = myValue;
+            [sender setSelectedSegmentIndex:myForceIndex];
             break;
         case 4:
-            myForce = myValue;
-            [sender setSelectedSegmentIndex:myForce];
+            myForceIndex = myValue;
+            [sender setSelectedSegmentIndex:myForceIndex];
             break;
         case 5:
             mySpringStrength+=20;
-            [self enumerateChildNodesWithName:@"spring" usingBlock:^(SKNode *node, BOOL *stop) {
-                [(SKFieldNode *) node setStrength:mySpringStrength ];
+            [self enumerateChildNodesWithName:@"springposition" usingBlock:^(SKNode *node, BOOL *stop) {
+                //NSlog(@"Found Spring Position");
+                [node enumerateChildNodesWithName:@"spring" usingBlock:^(SKNode *node, BOOL *stop) {
+                    //NSlog(@"Found Spring");
+                    //NSlog(@"Node Spring Strength= %ld", mySpringStrength);
+                    [  (SKFieldNode *) node  setStrength:mySpringStrength ];
+                }];
             }];
-            
-            
-            [sender setSelectedSegmentIndex:myForce];
+            [sender setSelectedSegmentIndex:myForceIndex];
+            break;
             break;
         case 6:
             mySpringStrength-=20;
-            [self enumerateChildNodesWithName:@"spring" usingBlock:^(SKNode *node, BOOL *stop) {
-                [(SKFieldNode *) node setStrength:mySpringStrength ];
+            [self enumerateChildNodesWithName:@"springposition" usingBlock:^(SKNode *node, BOOL *stop) {
+                //NSlog(@"Found Spring Position");
+                [node enumerateChildNodesWithName:@"spring" usingBlock:^(SKNode *node, BOOL *stop) {
+                    //NSlog(@"Found Spring");
+                                    //NSlog(@"Node Spring Strength= %ld", mySpringStrength);
+                    [  (SKFieldNode *) node  setStrength:mySpringStrength ];
+                }];
             }];
-            
-            [sender setSelectedSegmentIndex:myForce];
+            [sender setSelectedSegmentIndex:myForceIndex];
             break;
         default:
             break;
             
     }
-    NSLog(@"Spring = %ld / Vortex = %ld",mySpringStrength,myVortexStrength);
+    //NSLog(@"Spring = %ld / Vortex = %ld",mySpringStrength,myVortexStrength);
 }
+
+
+-(void)myUpSwipeAction{
+    [self enumerateChildNodesWithName:@"colorsprite" usingBlock:^(SKNode *node, BOOL *stop) {
+        myTempMass = node.physicsBody.mass + myMassIncrement;
+//        NSLog(@"Mass=%f",myTempMass);
+        [node.physicsBody setMass:myTempMass];
+    }];
+//    [myTopControl setAlpha:1];
+//    [myBottomControl setAlpha:1];
+}
+
+-(void)myDownSwipeAction{
+    [self enumerateChildNodesWithName:@"colorsprite" usingBlock:^(SKNode *node, BOOL *stop) {
+        myTempMass = node.physicsBody.mass - myMassIncrement;
+//        NSLog(@"Mass=%f",myTempMass);
+        [node.physicsBody setMass:myTempMass];
+    }];
+//    [myTopControl setAlpha:0];
+//    [myBottomControl setAlpha:0];
+}
+
 
 -(void)myRightSwipeAction{
     [self removeAllChildren];
@@ -525,6 +611,27 @@ SKSpriteNode *myColorSprite;
 
 
 -(void)myLeftSwipeAction{
+    
+    [self enumerateChildNodesWithName:@"vortexposition" usingBlock:^(SKNode *node, BOOL *stop) {
+        //NSlog(@"Found Vortex Position");
+        [node enumerateChildNodesWithName:@"vortex" usingBlock:^(SKNode *node, BOOL *stop) {
+            //NSlog(@"Found Vortex");
+            //NSlog(@"Node Vortex Start Strength= %ld", myVortexStartStrength);
+            [  (SKFieldNode *) node  setStrength:myVortexStartStrength ];
+        }];
+    }];
+
+    [self enumerateChildNodesWithName:@"springposition" usingBlock:^(SKNode *node, BOOL *stop) {
+        //NSlog(@"Found Spring Position");
+        [node enumerateChildNodesWithName:@"spring" usingBlock:^(SKNode *node, BOOL *stop) {
+            //NSlog(@"Found Spring");
+            //NSlog(@"Node Spring Start Strength= %ld", mySpringStartStrength);
+            [  (SKFieldNode *) node  setStrength:mySpringStartStrength ];
+        }];
+    }];
+
+    
+    
     myVortexStrength = myVortexStartStrength;
     mySpringStrength = mySpringStartStrength;
 }
