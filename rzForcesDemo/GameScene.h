@@ -9,4 +9,16 @@
 #import <SpriteKit/SpriteKit.h>
 @interface GameScene : SKScene
 
+//@property (strong,nonatomic) UISegmentedControl *myTopControl;
+//@property (strong,nonatomic) UISegmentedControl *myBottomControl;
+// UISegmentedControl * myTopControl;
+// UISegmentedControl * myBottomControl;
+
+
+//{
+//    @public
+//    UISegmentedControl *myTopControl;
+//    UISegmentedControl *myBottomControl;
+//}
+
 @end

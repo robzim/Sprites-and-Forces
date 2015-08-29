@@ -18,8 +18,9 @@
 		7C0D0AD71A52CCB20016A961 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D0AD51A52CCB20016A961 /* spark.png */; };
 		7C0D0ADB1A52D00E0016A961 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D0ADA1A52D00E0016A961 /* GameScene.sks */; };
 		7C22AD261A599B0100400BCF /* myFireFlies.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7C22AD251A599B0100400BCF /* myFireFlies.sks */; };
-		7C22AD2A1A59A67C00400BCF /* rzForces Image.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C22AD291A59A67C00400BCF /* rzForces Image.png */; };
+		7C22AD2A1A59A67C00400BCF /* oldrzForces Image.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C22AD291A59A67C00400BCF /* oldrzForces Image.png */; };
 		7C364AA21A58AC4F00523D1E /* VortexParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7C364AA11A58AC4F00523D1E /* VortexParticle.sks */; };
+		7C4F7E0E1AC8BB64008476CF /* rzForces Image.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C4F7E0D1AC8BB64008476CF /* rzForces Image.png */; };
 		7CB837331A52F0AF00A3685E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CB837321A52F0AF00A3685E /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -52,8 +53,9 @@
 		7C0D0AD51A52CCB20016A961 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		7C0D0ADA1A52D00E0016A961 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = ../GameScene.sks; sourceTree = "<group>"; };
 		7C22AD251A599B0100400BCF /* myFireFlies.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = myFireFlies.sks; sourceTree = "<group>"; };
-		7C22AD291A59A67C00400BCF /* rzForces Image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rzForces Image.png"; sourceTree = "<group>"; };
+		7C22AD291A59A67C00400BCF /* oldrzForces Image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oldrzForces Image.png"; sourceTree = "<group>"; };
 		7C364AA11A58AC4F00523D1E /* VortexParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = VortexParticle.sks; sourceTree = "<group>"; };
+		7C4F7E0D1AC8BB64008476CF /* rzForces Image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rzForces Image.png"; sourceTree = "<group>"; };
 		7CB837321A52F0AF00A3685E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,7 +122,8 @@
 			children = (
 				7C0D0AA81A52C9480016A961 /* Info.plist */,
 				7C0D0AA91A52C9480016A961 /* main.m */,
-				7C22AD291A59A67C00400BCF /* rzForces Image.png */,
+				7C4F7E0D1AC8BB64008476CF /* rzForces Image.png */,
+				7C22AD291A59A67C00400BCF /* oldrzForces Image.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -186,7 +189,7 @@
 		7C0D0A9C1A52C9480016A961 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Robert Zimmelman";
 				TargetAttributes = {
 					7C0D0AA31A52C9480016A961 = {
@@ -227,8 +230,9 @@
 				7C0D0AD71A52CCB20016A961 /* spark.png in Resources */,
 				7CB837331A52F0AF00A3685E /* Images.xcassets in Resources */,
 				7C0D0AB81A52C9490016A961 /* Main.storyboard in Resources */,
-				7C22AD2A1A59A67C00400BCF /* rzForces Image.png in Resources */,
+				7C22AD2A1A59A67C00400BCF /* oldrzForces Image.png in Resources */,
 				7C364AA21A58AC4F00523D1E /* VortexParticle.sks in Resources */,
+				7C4F7E0E1AC8BB64008476CF /* rzForces Image.png in Resources */,
 				7C22AD261A599B0100400BCF /* myFireFlies.sks in Resources */,
 				7C0D0ADB1A52D00E0016A961 /* GameScene.sks in Resources */,
 				7C0D0AD61A52CCB20016A961 /* MyParticle.sks in Resources */,
@@ -314,6 +318,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -382,6 +387,7 @@
 				INFOPLIST_FILE = rzForcesDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.zimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -397,6 +403,7 @@
 				INFOPLIST_FILE = rzForcesDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.zimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -417,6 +424,7 @@
 				);
 				INFOPLIST_FILE = rzForcesDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.zimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rzForcesDemo.app/rzForcesDemo";
 			};
@@ -432,6 +440,7 @@
 				);
 				INFOPLIST_FILE = rzForcesDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.zimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rzForcesDemo.app/rzForcesDemo";
 			};

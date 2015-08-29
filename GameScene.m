@@ -22,11 +22,10 @@ int myForceVisibilityIndex = 4;
 int myControlHeight = 40;
 int myColorSpriteDuration = 120;
 //long myVortexSpringStrength = 1;
-id myTopControl;
-id myBottomControl;
 float myTempMass = 0.0;
 float myMassIncrement = 10.0;
-
+//id myTopControl;
+//id myBottomControl;
 
 
 SKSpriteNode *myColorSprite;
@@ -59,6 +58,8 @@ SKSpriteNode *myColorSprite;
     
     NSArray *myBottomControlValues  = @[@"V+",@"V-",@"Vortex",@"Spring",@"Gravity",@"S+",@"S-"] ;
     UISegmentedControl *myBottomControl = [[ UISegmentedControl alloc] initWithItems:myBottomControlValues ];
+    
+    
     [myBottomControl setFrame:CGRectMake(0, self.view.bounds.size.height - myControlHeight , self.view.bounds.size.width  , myControlHeight  )];
     [myBottomControl setApportionsSegmentWidthsByContent:YES];
     [myBottomControl addTarget:self action:@selector(myBottomSwitchChanged:) forControlEvents:UIControlEventValueChanged ];
@@ -583,6 +584,9 @@ SKSpriteNode *myColorSprite;
 
 
 -(void)myUpSwipeAction{
+    
+    NSLog(@"Hide");
+    
     [self enumerateChildNodesWithName:@"colorsprite" usingBlock:^(SKNode *node, BOOL *stop) {
         myTempMass = node.physicsBody.mass + myMassIncrement;
 //        NSLog(@"Mass=%f",myTempMass);
@@ -604,6 +608,8 @@ SKSpriteNode *myColorSprite;
 
 
 -(void)myRightSwipeAction{
+    
+    
     [self removeAllChildren];
     [self makeMyInstructionLabels];
 
@@ -638,7 +644,6 @@ SKSpriteNode *myColorSprite;
 
 
 -(void)update:(CFTimeInterval)currentTime {
-    
     //    NSLog(@"children = %i",self.children.count);
     
     if ( self.children.count > 600) {
