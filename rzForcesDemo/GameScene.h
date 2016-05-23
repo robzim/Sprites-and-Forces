@@ -8,17 +8,14 @@
 
 #import <SpriteKit/SpriteKit.h>
 @interface GameScene : SKScene
-
+@property NSOperationQueue *myQueue;
+@property SKSpriteNode *myBG;
+@property SKSpriteNode *myPositionSprite;
+@property SKSpriteNode *myCursorSprite;
+@property SKLabelNode *mySecondaryHelperLabel;
+@property UISegmentedControl *myTopControl;
+@property NSArray *myTopControlValues;
 //@property (strong,nonatomic) UISegmentedControl *myTopControl;
 //@property (strong,nonatomic) UISegmentedControl *myBottomControl;
-// UISegmentedControl * myTopControl;
-// UISegmentedControl * myBottomControl;
-
-
-//{
-//    @public
-//    UISegmentedControl *myTopControl;
-//    UISegmentedControl *myBottomControl;
-//}
 
 @end

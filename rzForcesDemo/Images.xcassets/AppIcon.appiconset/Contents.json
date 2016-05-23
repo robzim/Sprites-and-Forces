@@ -49,9 +49,8 @@
       "scale" : "2x"
     },
     {
-      "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM.png",
+      "size" : "60x60",
       "scale" : "3x"
     },
     {
@@ -112,6 +111,12 @@
       "size" : "76x76",
       "idiom" : "ipad",
       "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-17.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM.png",
       "scale" : "2x"
     }
   ],
