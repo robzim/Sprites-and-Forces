@@ -43,7 +43,7 @@
     // Create and configure the scene.
     GameScene *scene = [GameScene unarchiveFromFile:@"GameScene"];
     scene.scaleMode = SKSceneScaleModeAspectFill;
-    [scene setBackgroundColor:[UIColor blackColor]];
+    [scene setBackgroundColor:[UIColor lightGrayColor]];
     // Present the scene.
     [skView presentScene:scene];
 

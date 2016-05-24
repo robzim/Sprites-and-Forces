@@ -26,6 +26,11 @@ long myGravityFalloff = 2.0 ;
 
 long myVortexStrength = 10.0;
 long myVortexStartStrength = 10.0 ;
+float myVortexDuration = 500.0;
+
+
+
+
 
 long myRadialGravityStrength = 10.0;
 
@@ -82,24 +87,24 @@ float myLastTime = 0;
     //  rz check to see if any sprites are outside of the frame
     
     
-//    [self enumerateChildNodesWithName:@"color" usingBlock:^(SKNode *node, BOOL *stop) {
-//        if (![node intersectsNode:myBG] ) {
-//            NSLog(@"node outside of frame X = %f, Y = %f", node.position.x, node.position.y);
-//            [node removeFromParent];
-//        }
-//    }];
-//    [self enumerateChildNodesWithName:@"texture" usingBlock:^(SKNode *node, BOOL *stop) {
-//        if (![node intersectsNode:myBG] ) {
-//            NSLog(@"node outside of frame X = %f, Y = %f", node.position.x, node.position.y);
-//            [node removeFromParent];
-//        }
-//    }];
-//    [self enumerateChildNodesWithName:@"space object" usingBlock:^(SKNode *node, BOOL *stop) {
-//        if (![node intersectsNode:myBG] ) {
-//            NSLog(@"node outside of frame X = %f, Y = %f", node.position.x, node.position.y);
-//            [node removeFromParent];
-//        }
-//    }];
+    [self enumerateChildNodesWithName:@"color" usingBlock:^(SKNode *node, BOOL *stop) {
+        if (![node intersectsNode:myBG] ) {
+            NSLog(@"node outside of frame X = %f, Y = %f", node.position.x, node.position.y);
+            [node removeFromParent];
+        }
+    }];
+    [self enumerateChildNodesWithName:@"texture" usingBlock:^(SKNode *node, BOOL *stop) {
+        if (![node intersectsNode:myBG] ) {
+            NSLog(@"node outside of frame X = %f, Y = %f", node.position.x, node.position.y);
+            [node removeFromParent];
+        }
+    }];
+    [self enumerateChildNodesWithName:@"space object" usingBlock:^(SKNode *node, BOOL *stop) {
+        if (![node intersectsNode:myBG] ) {
+            NSLog(@"node outside of frame X = %f, Y = %f", node.position.x, node.position.y);
+            [node removeFromParent];
+        }
+    }];
     
     
     
@@ -184,6 +189,11 @@ float myLastTime = 0;
 
 -(void)didMoveToView:(SKView *)view {
     
+//    [self setPhysicsBody:[SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0, 25, self.frame.size.height-500, (self.frame.size.width-50))] ];
+
+    [self setPhysicsBody:[SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame]];
+    
+    NSLog(@"height = %f, width = %f",[self frame].size.height,[self frame].size.width );
     
     
     switch ( (int) [[UIScreen mainScreen] bounds].size.height ) {
@@ -217,13 +227,41 @@ float myLastTime = 0;
     
     
     
+    
+    
+    
+    
+    //  rz DO THIS NEXT
+    
+    
     myBG = [SKSpriteNode spriteNodeWithImageNamed:@"myBlackBG"];
+    
+//    myBG = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(786.0, 1024.0)];
+    [myBG setPosition:CGPointMake(0.0, 0.0)];
     [myBG setZPosition:-10.0];
+//    [myBG setSize:CGSizeMake(self.frame.size.height, self.frame.size.width)];
+    
     [self addChild:myBG];
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     [self.physicsWorld setGravity:CGVectorMake(0.0, -0.4)];
+    
+    
+//    [self setPhysicsBody:[SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0, 0, self.scene.size.width - 50 , self.scene.size.width - 10 )]];
+    
     [self setPhysicsBody:[SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame] ];
 
+    
+    
     UISwipeGestureRecognizer *myUpSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(myUpSwipeAction)];
     [myUpSwipeGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionUp];
     [self.view addGestureRecognizer:myUpSwipeGestureRecognizer];
@@ -245,7 +283,7 @@ float myLastTime = 0;
     [self.view addGestureRecognizer:myRightSwipeGestureRecognizer];
     
     
-    NSArray *myBottomControlValues  = @[@"V-",@"V+",@"Vortex",@"Anti-Gravity",@"Gravity",@"S+",@"S-"] ;
+    NSArray *myBottomControlValues  = @[@"V-",@"V+",@"VR",@"Vortex",@"Anti-Grav",@"Grav",@"G+",@"G-",@"GR"] ;
     UISegmentedControl *myBottomControl = [[ UISegmentedControl alloc] initWithItems:myBottomControlValues ];
     
     
@@ -290,6 +328,144 @@ float myLastTime = 0;
     
     
 }
+
+
+
+-(void)myDecreaseGravity{
+    [self enumerateChildNodesWithName:@"gravityposition" usingBlock:^(SKNode *node, BOOL *stop) {
+        //
+        //
+        // the position sprite is the child , the gravity node is the child of hte position sprite
+        //
+        //
+        [node enumerateChildNodesWithName:@"gravity" usingBlock:^(SKNode *node, BOOL *stop) {
+            //            NSLog(@"found a gravity node");
+            NSLog(@"strength before decrease gravity = %f",    [ (SKFieldNode *)   node strength ]) ;
+            [ (SKFieldNode *)   node setStrength: [(SKFieldNode *) node strength] -  0.5];
+            NSLog(@"strength after decrease gravity = %f",    [ (SKFieldNode *)   node strength ]) ;
+        }];
+    }];
+}
+
+
+-(void)myIncreaseGravity{
+    [self enumerateChildNodesWithName:@"gravityposition" usingBlock:^(SKNode *node, BOOL *stop) {
+        //
+        //
+        // the position sprite is the child , the gravity node is the child of hte position sprite
+        //
+        //
+        [node enumerateChildNodesWithName:@"gravity" usingBlock:^(SKNode *node, BOOL *stop) {
+            //            NSLog(@"found a gravity node");
+            //            NSLog(@"radial gravity increment = %ld", myRadialGravityIncrement);
+            NSLog(@"strength before increase gravity = %f",    [ (SKFieldNode *)   node strength ]) ;
+            [ (SKFieldNode *)   node setStrength: [   (SKFieldNode *) node strength] +  0.5 ];
+            NSLog(@"strength after increase gravity = %f",    [ (SKFieldNode *)   node strength ]) ;
+        }];
+    }];
+    
+}
+
+
+
+
+-(void)myResetGravity{
+    NSLog(@"in my reset gravity");
+    [self enumerateChildNodesWithName:@"gravityposition" usingBlock:^(SKNode *node, BOOL *stop) {
+        [node enumerateChildNodesWithName:@"gravity" usingBlock:^(SKNode *node, BOOL *stop) {
+            //            NSLog(@"found a gravity node");
+            //            NSLog(@"strength before reset gravity = %f",    [ (SKFieldNode *)   node strength ]) ;
+            [ (SKFieldNode *)   node setStrength: myRadialGravityStrength];
+            //            NSLog(@"strength after reset gravity = %f",    [ (SKFieldNode *)   node strength ]) ;
+        }];
+    }];
+}
+
+
+
+
+
+
+-(void)myDecreaseVortex{
+    //
+    [self enumerateChildNodesWithName:@"vortexposition" usingBlock:^(SKNode *node, BOOL *stop) {
+        //
+        //
+        //
+        // the position sprite is the child , the Vortex node is the child of hte position sprite
+        //
+        //
+        [node enumerateChildNodesWithName:@"vortex" usingBlock:^(SKNode *node, BOOL *stop) {
+            NSLog(@"myVortexStrength before decrease vortex = %ld", myVortexStrength) ;
+            [ (SKFieldNode *)   node setStrength: [   (SKFieldNode *) node strength] -  1.0 ];
+            myVortexStrength = [ (SKFieldNode *) node strength];
+            
+            SKAction *mySlowSpin = [SKAction repeatActionForever:[SKAction sequence:@[
+                                                                                      [SKAction rotateByAngle:myVortexStrength*50 duration:myVortexDuration],]]];
+            [ (SKSpriteNode *) node.parent removeAllActions];
+            [ (SKSpriteNode *) node.parent runAction:mySlowSpin];
+            NSLog(@"myVortexStrength after decrease vortex = %ld", myVortexStrength) ;
+        }];
+        
+        
+    }];
+}
+
+
+-(void)myIncreaseVortex{
+    [self enumerateChildNodesWithName:@"vortexposition" usingBlock:^(SKNode *node, BOOL *stop) {
+        //
+        //
+        // the position sprite is the child , the Vortex node is the child of hte position sprite
+        //
+        [node enumerateChildNodesWithName:@"vortex" usingBlock:^(SKNode *node, BOOL *stop) {
+            //            NSLog(@"found a vortex node");
+            //            NSLog(@"radial gravity increment = %ld", myRadialGravityIncrement);
+            //            NSLog(@"strength before increase vortex = %f",    [ (SKFieldNode *)   node strength ]) ;
+            [ (SKFieldNode *)   node setStrength: [   (SKFieldNode *) node strength] +  1.0 ];
+            myVortexStrength = [ (SKFieldNode *) node strength];
+            SKAction *mySlowSpin = [SKAction repeatActionForever:[SKAction sequence:@[
+                                                                                      [SKAction rotateByAngle:myVortexStrength*50 duration:myVortexDuration],]]];
+            [ (SKSpriteNode *) node.parent removeAllActions];
+            [ (SKSpriteNode *) node.parent runAction:mySlowSpin];
+            NSLog(@"myVortexStrength after increase vortex = %ld", myVortexStrength) ;
+        }];
+    }];
+    
+}
+
+
+
+
+-(void)myResetVortex{
+    [self enumerateChildNodesWithName:@"vortexposition" usingBlock:^(SKNode *node, BOOL *stop) {
+        
+        //        myVortexStrength = 10.0;
+        //
+        //        [node removeAllActions];
+        //        SKAction *mySlowSpin = [SKAction rotateByAngle:myVortexStrength*50 duration:myColorSpriteDuration];
+        //        [node runAction:mySlowSpin];
+        //
+        
+        [node enumerateChildNodesWithName:@"vortex" usingBlock:^(SKNode *node, BOOL *stop) {
+            //            NSLog(@"found a Vortex node");
+            //            NSLog(@"strength before reset Vortex = %f",    [ (SKFieldNode *)   node strength ]) ;
+            [ (SKFieldNode *)   node setStrength: myVortexStartStrength];
+            SKAction *mySlowSpin = [SKAction sequence:@[
+                                                        [SKAction rotateByAngle:myVortexStartStrength*50 duration:myVortexDuration],
+                                                        ]];
+            [ (SKSpriteNode *) node.parent removeAllActions];
+            [ (SKSpriteNode *) node.parent runAction:mySlowSpin];
+            
+            //            NSLog(@"strength after reset Vortex = %f",    [ (SKFieldNode *)   node strength ]) ;
+        }];
+    }];
+}
+
+
+
+
+
 
 
 
@@ -475,7 +651,7 @@ float myLastTime = 0;
         //        NSLog(@"NOW myforce = %ld",myForce);
         
         switch (myForceIndex) {
-            case 2:
+            case 3:
             {
                 //
                 //
@@ -484,7 +660,7 @@ float myLastTime = 0;
                 [self myMakeVortex];
                 break;
             }
-            case 3:
+            case 4:
             {
                 //
                 //
@@ -512,7 +688,7 @@ float myLastTime = 0;
                 [self addChild:myPositionSprite];
                 break;
             }
-            case 4:
+            case 5:
             {
                 //
                 //
@@ -579,31 +755,15 @@ float myLastTime = 0;
     //NSlog(@"Value = %ld",myValue);
     switch (myValue) {
         case 0:
-            myVortexStrength-= 10;
-            [self enumerateChildNodesWithName:@"vortexposition" usingBlock:^(SKNode *node, BOOL *stop) {
-                //NSlog(@"Found Vortex Position");
-                [node enumerateChildNodesWithName:@"vortex" usingBlock:^(SKNode *node, BOOL *stop) {
-                    //NSlog(@"Found Vortex");
-                    //NSlog(@"Node Vortex Strength= %ld", myVortexStrength);
-                    [  (SKFieldNode *) node  setStrength:myVortexStrength ];
-                }];
-            }];
+            [self myIncreaseVortex];
             [sender setSelectedSegmentIndex:myForceIndex];
             break;
         case 1:
-            myVortexStrength+= 10;
-            [self enumerateChildNodesWithName:@"vortexposition" usingBlock:^(SKNode *node, BOOL *stop) {
-                //NSlog(@"Found Vortex Position");
-                [node enumerateChildNodesWithName:@"vortex" usingBlock:^(SKNode *node, BOOL *stop) {
-                    //NSlog(@"Found Vortex");
-                    //NSlog(@"Node Vortex Strength= %ld", myVortexStrength);
-                    [  (SKFieldNode *) node  setStrength:myVortexStrength ];
-                }];
-            }];
+            [self myDecreaseVortex];
             [sender setSelectedSegmentIndex:myForceIndex];
             break;
         case 2:
-            myForceIndex = myValue;
+            [self myResetVortex];
             [sender setSelectedSegmentIndex:myForceIndex];
             break;
         case 3:
@@ -615,30 +775,45 @@ float myLastTime = 0;
             [sender setSelectedSegmentIndex:myForceIndex];
             break;
         case 5:
-            mySpringStrength+=20;
-            [self enumerateChildNodesWithName:@"springposition" usingBlock:^(SKNode *node, BOOL *stop) {
-                //NSlog(@"Found Spring Position");
-                [node enumerateChildNodesWithName:@"spring" usingBlock:^(SKNode *node, BOOL *stop) {
-                    //NSlog(@"Found Spring");
-                    //NSlog(@"Node Spring Strength= %ld", mySpringStrength);
-                    [  (SKFieldNode *) node  setStrength:mySpringStrength ];
-                }];
-            }];
+            myForceIndex = myValue;
             [sender setSelectedSegmentIndex:myForceIndex];
-            break;
             break;
         case 6:
-            mySpringStrength-=20;
-            [self enumerateChildNodesWithName:@"springposition" usingBlock:^(SKNode *node, BOOL *stop) {
-                //NSlog(@"Found Spring Position");
-                [node enumerateChildNodesWithName:@"spring" usingBlock:^(SKNode *node, BOOL *stop) {
-                    //NSlog(@"Found Spring");
-                    //NSlog(@"Node Spring Strength= %ld", mySpringStrength);
-                    [  (SKFieldNode *) node  setStrength:mySpringStrength ];
-                }];
-            }];
+            [self myIncreaseGravity];
+//            mySpringStrength+=20;
+//            [self enumerateChildNodesWithName:@"springposition" usingBlock:^(SKNode *node, BOOL *stop) {
+//                //NSlog(@"Found Spring Position");
+//                [node enumerateChildNodesWithName:@"spring" usingBlock:^(SKNode *node, BOOL *stop) {
+//                    //NSlog(@"Found Spring");
+//                    //NSlog(@"Node Spring Strength= %ld", mySpringStrength);
+//                    [  (SKFieldNode *) node  setStrength:mySpringStrength ];
+//                }];
+//            }];
             [sender setSelectedSegmentIndex:myForceIndex];
             break;
+        case 7:
+            [self myDecreaseGravity];
+//            mySpringStrength-=20;
+//            [self enumerateChildNodesWithName:@"springposition" usingBlock:^(SKNode *node, BOOL *stop) {
+//                //NSlog(@"Found Spring Position");
+//                [node enumerateChildNodesWithName:@"spring" usingBlock:^(SKNode *node, BOOL *stop) {
+//                    //NSlog(@"Found Spring");
+//                    //NSlog(@"Node Spring Strength= %ld", mySpringStrength);
+//                    [  (SKFieldNode *) node  setStrength:mySpringStrength ];
+//                }];
+//            }];
+            [sender setSelectedSegmentIndex:myForceIndex];
+            break;
+        case 8:
+            //
+            //
+            //    rz reset spring force here
+            //
+            //
+            [self myResetGravity];
+            [sender setSelectedSegmentIndex:myForceIndex];
+            break;
+
         default:
             break;
             
@@ -673,6 +848,7 @@ float myLastTime = 0;
 
 -(void)myRightSwipeAction{
     [self removeAllChildren];
+    [self addChild:myBG];
     [self makeMyInstructionLabels];
 }
 
