@@ -53,7 +53,7 @@
 		7CA4BA421CF2236B00207C14 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA4BA361CF2236B00207C14 /* spark.png */; };
 		7CA4BA431CF2236B00207C14 /* Stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA4BA371CF2236B00207C14 /* Stars.png */; };
 		7CA4BA441CF2236B00207C14 /* Swirly.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA4BA381CF2236B00207C14 /* Swirly.png */; };
-		7CA4BA451CF2236B00207C14 /* VortexParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7CA4BA391CF2236B00207C14 /* VortexParticle.sks */; };
+		7CA4BA451CF2236B00207C14 /* myVortexParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7CA4BA391CF2236B00207C14 /* myVortexParticle.sks */; };
 		7CA4BA461CF2236B00207C14 /* Wood.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA4BA3A1CF2236B00207C14 /* Wood.png */; };
 		7CA4BA471CF2236B00207C14 /* Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA4BA3B1CF2236B00207C14 /* Yellow.png */; };
 		7CA4BA4E1CF2327D00207C14 /* Leopard.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA4BA4C1CF2327D00207C14 /* Leopard.png */; };
@@ -129,7 +129,7 @@
 		7CA4BA361CF2236B00207C14 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		7CA4BA371CF2236B00207C14 /* Stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stars.png; sourceTree = "<group>"; };
 		7CA4BA381CF2236B00207C14 /* Swirly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Swirly.png; sourceTree = "<group>"; };
-		7CA4BA391CF2236B00207C14 /* VortexParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = VortexParticle.sks; sourceTree = "<group>"; };
+		7CA4BA391CF2236B00207C14 /* myVortexParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = myVortexParticle.sks; sourceTree = "<group>"; };
 		7CA4BA3A1CF2236B00207C14 /* Wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Wood.png; sourceTree = "<group>"; };
 		7CA4BA3B1CF2236B00207C14 /* Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yellow.png; sourceTree = "<group>"; };
 		7CA4BA4C1CF2327D00207C14 /* Leopard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Leopard.png; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 				7CE428481CF246EB00599FC1 /* myGravityParticle.sks */,
 				7C22AD251A599B0100400BCF /* myFireFlies.sks */,
 				7C0D0AD41A52CCB20016A961 /* MyParticle.sks */,
-				7CA4BA391CF2236B00207C14 /* VortexParticle.sks */,
+				7CA4BA391CF2236B00207C14 /* myVortexParticle.sks */,
 				7CA4BA311CF2236B00207C14 /* Paper.png */,
 				7CA4BA321CF2236B00207C14 /* pia18014-full.jpg */,
 				7CA4BA331CF2236B00207C14 /* Red.png */,
@@ -312,7 +312,7 @@
 		7C0D0A9C1A52C9480016A961 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Robert Zimmelman";
 				TargetAttributes = {
 					7C0D0AA31A52C9480016A961 = {
@@ -350,7 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C0D0ABD1A52C9490016A961 /* LaunchScreen.xib in Resources */,
-				7CA4BA451CF2236B00207C14 /* VortexParticle.sks in Resources */,
+				7CA4BA451CF2236B00207C14 /* myVortexParticle.sks in Resources */,
 				7CA4BA291CF2235600207C14 /* flame.png in Resources */,
 				7CA4BA0D1CF2234800207C14 /* 9467442336_db3d40cb53_o.png in Resources */,
 				7CA4BA081CF2234800207C14 /* 5278071900_c040282c2d_o.png in Resources */,
@@ -483,6 +483,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -525,6 +526,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -547,7 +549,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = rzForcesDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.zimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -563,7 +565,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = rzForcesDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.zimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

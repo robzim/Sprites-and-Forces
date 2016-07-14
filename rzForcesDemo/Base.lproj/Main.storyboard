@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LVB-YS-i5n">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11163.2" systemVersion="16A239j" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LVB-YS-i5n">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11133"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Game View Controller-->
@@ -14,14 +15,160 @@
                         <viewControllerLayoutGuide type="bottom" id="b3d-qh-BLL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bdc-N1-crn" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <stackView hidden="YES" opaque="NO" tag="101" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Bef-aT-ZZr">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrd-TZ-8rj">
+                                        <state key="normal" title="Rec"/>
+                                        <connections>
+                                            <action selector="myRecordPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="u34-mV-ow7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmM-4p-UZ3">
+                                        <state key="normal" title="Stop"/>
+                                        <connections>
+                                            <action selector="myStopPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="zF5-np-BOr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1j-6H-SH1">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="Hjp-eB-Zep"/>
+                                    <constraint firstAttribute="width" constant="85" id="K2u-YA-fKn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
+                                <state key="normal" title="Recording">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <stackView hidden="YES" opaque="NO" tag="303" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="8hE-YX-SAH" userLabel="ShowHide Stack View">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trails" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvA-H3-7dF">
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dEF-7t-s5E">
+                                        <state key="normal" title="Show"/>
+                                        <connections>
+                                            <action selector="myMiddleButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="ktC-Bt-XwZ"/>
+                                            <action selector="myShowTrailsButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="1un-4m-BAh"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z40-Up-GdD">
+                                        <state key="normal" title="Hide"/>
+                                        <connections>
+                                            <action selector="myHideTrailsButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="J0g-QS-zpH"/>
+                                            <action selector="myMiddleButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="Vir-hb-4tn"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forces" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpI-vL-KBe">
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eh-yJ-Qcb">
+                                        <state key="normal" title="Show"/>
+                                        <connections>
+                                            <action selector="myMiddleButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="b0K-VY-76e"/>
+                                            <action selector="myShowForcesButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="gve-9K-c8g"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQV-TF-M4C">
+                                        <state key="normal" title="Hide"/>
+                                        <connections>
+                                            <action selector="myHideForcesButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="Yw8-Sk-Xq0"/>
+                                            <action selector="myMiddleButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="1X0-Pu-gpq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="pQV-TF-M4C" firstAttribute="top" secondItem="cpI-vL-KBe" secondAttribute="bottom" constant="29" id="hkN-Py-NcE"/>
+                                </constraints>
+                            </stackView>
+                            <stackView hidden="YES" opaque="NO" tag="202" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="L2O-eh-li8" userLabel="Forces Stack View">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="111" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vortex" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xA8-Rl-cEC">
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irS-EY-fZa">
+                                        <state key="normal" title="+"/>
+                                        <connections>
+                                            <action selector="myIncreaseVortexButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="wyp-Fn-MzA"/>
+                                            <action selector="myMiddleButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="NBH-3c-VMu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZI-cE-Pqs">
+                                        <state key="normal" title="-"/>
+                                        <connections>
+                                            <action selector="myDecreaseVortexButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="Pie-kA-mfI"/>
+                                            <action selector="myMiddleButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="3XX-Nb-yMd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oee-uf-lgP">
+                                        <state key="normal" title="Reset"/>
+                                        <connections>
+                                            <action selector="myMiddleButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="tf4-Xj-c6A"/>
+                                            <action selector="myResetVortexButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="riH-nF-hsR"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gravity" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wng-nI-q9y">
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hJ-4X-iBB">
+                                        <state key="normal" title="+"/>
+                                        <connections>
+                                            <action selector="myIncreaseGravityButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="8sT-GK-gcK"/>
+                                            <action selector="myMiddleButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="Wmv-Dd-x15"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yv-d9-9Nh">
+                                        <state key="normal" title="-"/>
+                                        <connections>
+                                            <action selector="myDecreaseGravityButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="EQL-0m-eh9"/>
+                                            <action selector="myMiddleButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="9th-Wl-9Qo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppm-VJ-iHY">
+                                        <state key="normal" title="Reset"/>
+                                        <connections>
+                                            <action selector="myResetGravityButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="FAS-UO-dbf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="8hE-YX-SAH" firstAttribute="leading" secondItem="bdc-N1-crn" secondAttribute="leadingMargin" id="8ge-KZ-7MN"/>
+                            <constraint firstItem="b3d-qh-BLL" firstAttribute="top" secondItem="Bef-aT-ZZr" secondAttribute="bottom" constant="47" id="9hs-r2-Njz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="d1j-6H-SH1" secondAttribute="trailing" constant="81" id="LdT-lF-XJA"/>
+                            <constraint firstItem="L2O-eh-li8" firstAttribute="trailing" secondItem="bdc-N1-crn" secondAttribute="trailingMargin" id="NLP-9j-2ZB"/>
+                            <constraint firstItem="Bef-aT-ZZr" firstAttribute="centerX" secondItem="bdc-N1-crn" secondAttribute="centerX" id="awh-lQ-vGl"/>
+                            <constraint firstItem="8hE-YX-SAH" firstAttribute="centerY" secondItem="bdc-N1-crn" secondAttribute="centerY" id="eeQ-ns-uMn"/>
+                            <constraint firstItem="d1j-6H-SH1" firstAttribute="top" secondItem="PCf-gQ-wO7" secondAttribute="bottom" constant="169" id="p0C-Wg-i7F"/>
+                            <constraint firstItem="L2O-eh-li8" firstAttribute="centerY" secondItem="8hE-YX-SAH" secondAttribute="centerY" id="qzQ-kf-hjM"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="myGravityStrength" destination="wng-nI-q9y" id="8Sa-HD-oRp"/>
+                        <outlet property="myRecButton" destination="Lrd-TZ-8rj" id="IXj-ji-Oig"/>
+                        <outlet property="myRecordingIndicator" destination="d1j-6H-SH1" id="duG-g1-IIX"/>
+                        <outlet property="myScreenRecorderStackView" destination="Bef-aT-ZZr" id="D7e-k2-fuj"/>
+                        <outlet property="myStopButton" destination="CmM-4p-UZ3" id="bDG-Ss-gpp"/>
+                        <outlet property="myVortexStrength" destination="xA8-Rl-cEC" id="ecz-i6-pvJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btX-cZ-eVz" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="25" y="-67"/>
+            <point key="canvasLocation" x="24.800000000000001" y="-67.016491754122939"/>
         </scene>
     </scenes>
 </document>

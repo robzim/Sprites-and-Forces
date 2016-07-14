@@ -7,6 +7,8 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+
+
 @interface GameScene : SKScene
 @property NSOperationQueue *myQueue;
 @property SKSpriteNode *myBG;
@@ -15,6 +17,9 @@
 @property SKLabelNode *mySecondaryHelperLabel;
 @property UISegmentedControl *myTopControl;
 @property NSArray *myTopControlValues;
+@property UISegmentedControl *myBottomControl;
+@property NSArray *myBottomControlValues;
+
 //@property (strong,nonatomic) UISegmentedControl *myTopControl;
 //@property (strong,nonatomic) UISegmentedControl *myBottomControl;
 
