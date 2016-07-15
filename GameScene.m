@@ -16,7 +16,7 @@ float myCircleMass = 1.0;
 int myCircleSpriteLoops = 1;
 
 
-long myForceIndex = 0;
+long myObjectToBeDropped = 0;
 long mySpringStrength = -1.1;
 long mySpringStartStrength = -1;
 
@@ -395,8 +395,8 @@ float myLastTime = 0;
     [myBottomControl setFrame:CGRectMake(0, self.view.bounds.size.height - myControlHeight , self.view.bounds.size.width  , myControlHeight  )];
     [myBottomControl setApportionsSegmentWidthsByContent:YES];
     [myBottomControl addTarget:self action:@selector(myBottomSwitchChanged:) forControlEvents:UIControlEventValueChanged ];
-    myForceIndex = 0;
-    [myBottomControl setSelectedSegmentIndex:myForceIndex];
+    myObjectToBeDropped = 0;
+    [myBottomControl setSelectedSegmentIndex:myObjectToBeDropped];
     [self.view addSubview:myBottomControl];
     
     
@@ -430,10 +430,8 @@ float myLastTime = 0;
     
     /* Setup your scene here */
     
-    // set up the primary instruction label
-    [ (SKLabelNode *) [self childNodeWithName:@"myPrimaryInstructionLabel"] setText:[NSString stringWithFormat:@"Tap to Drop %@", myBottomControlValues[myForceIndex]]];
     
-    [self makeMyInstructionLabels];
+    [self myMakeInstructionLabels];
     //    [myTopControl setSelectedSegmentIndex:4];
     
     [(SKLabelNode *) [self childNodeWithName:@"myVortexValueSprite"] setText: [NSString stringWithFormat:   @"Vortex = %0.2f",myVortexStrength/10.0f]];
@@ -828,14 +826,13 @@ float myLastTime = 0;
     // if the user touched the top switch, stop the 'remove' animation
     //
     [UIView cancelPreviousPerformRequestsWithTarget:self];
+    
+    myObjectToBeDropped = sender.selectedSegmentIndex;
 
     
-    myForceIndex = sender.selectedSegmentIndex;
-
     
     
-    
-    if (myForceIndex == 0) {
+    if (myObjectToBeDropped == 0) {
         [self myMakeTextures];
         //
         // set top switch to 0 to drop simplest item
@@ -844,7 +841,7 @@ float myLastTime = 0;
         
     } // end of if myValue == 0
     
-    else if (myForceIndex == 1) {
+    else if (myObjectToBeDropped == 1) {
 
         myTrailsIndicator = NO;
         [self myMakeColorsWithTrails: myTrailsIndicator];
@@ -853,7 +850,7 @@ float myLastTime = 0;
         [sender setSelectedSegmentIndex:-1];
 
     }
-    else if (myForceIndex == 2) {
+    else if (myObjectToBeDropped == 2) {
         
         [self myMakeCircles];
         //
@@ -862,7 +859,7 @@ float myLastTime = 0;
         [sender setSelectedSegmentIndex:-1];
 
     }
-    else if (myForceIndex == 3) {
+    else if (myObjectToBeDropped == 3) {
 
         myTrailsIndicator = YES;
         [self myMakeColorsWithTrails: myTrailsIndicator];
@@ -871,7 +868,7 @@ float myLastTime = 0;
         [sender setSelectedSegmentIndex:-1];
 
     }
-    else if (myForceIndex == 4){
+    else if (myObjectToBeDropped == 4){
         exit(0);
     }
     
@@ -944,7 +941,7 @@ float myLastTime = 0;
         //        SKSpriteNode *myForceImage = [SKSpriteNode spriteNodeWithImageNamed:@"rzForces Image.png"];
         //        NSLog(@"NOW myforce = %ld",myForce);
         
-        switch (myForceIndex) {
+        switch (myObjectToBeDropped) {
             case 0:
             {
                 //
@@ -1010,13 +1007,19 @@ float myLastTime = 0;
     [UIView cancelPreviousPerformRequestsWithTarget:self];
 
     long myValue = sender.selectedSegmentIndex;
-    myForceIndex = myValue;
-    [sender setSelectedSegmentIndex:myForceIndex];
+    myObjectToBeDropped = myValue;
+    [sender setSelectedSegmentIndex:myObjectToBeDropped];
     //
     //
     // set the primary instruction label with the proper text
     //
-    [ (SKLabelNode *) [self childNodeWithName:@"myPrimaryInstructionLabel"] setText:[NSString stringWithFormat:@"Tap to Drop %@", myBottomControlValues[myForceIndex]]];
+    [ (SKLabelNode *) [self childNodeWithName:@"myPrimaryInstructionLabel"] setText:[NSString stringWithFormat:@"Tap to Drop %@", myBottomControlValues[myObjectToBeDropped]]];
+    
+    //
+    //
+    //
+    // now restart the 'remove' animation
+    [self performSelector:@selector(myRemoveTopControl) withObject:self afterDelay:5.0];
 }
 
 
@@ -1092,6 +1095,8 @@ float myLastTime = 0;
         //
         //    before raising the top and bottom controls, remove the animation that is removing the side menus
         [UIView cancelPreviousPerformRequestsWithTarget:self];
+        
+//        [UIView cancelPreviousPerformRequestsWithTarget:self];
         //
         //
         //        [myTopControl setCenter:CGPointMake(myTopControl.frame.origin.x, myTopControl.frame.origin.y + 1000)];
@@ -1099,10 +1104,35 @@ float myLastTime = 0;
 //        [myTopControl setSelected:NO];
         [myTopControl setHidden:NO];
         [myBottomControl setHidden:NO];
+        [self enumerateChildNodesWithName:@"instructionLabelnode" usingBlock:^(SKNode * _Nonnull node, BOOL * _Nonnull stop) {
+            [node setAlpha:1.0];
+        }];
+//        [self performSelector:@selector(myRemoveInstructionLabels) withObject:self afterDelay:5.0];
+        
         [self performSelector:@selector(myRemoveTopControl) withObject:self afterDelay:5.0];
       }
 }
 
+
+-(void)myRemoveInstructionLabels{
+//    SKAction *myLabelRemove = [SKAction fadeOutWithDuration:2.0];
+    [self enumerateChildNodesWithName:@"instructionLabelNode" usingBlock:^(SKNode * _Nonnull node, BOOL * _Nonnull stop) {
+        [node setAlpha:0.0];
+    }];
+}
+
+
+-(void)myRemoveAllControlsAndInstructions{
+    [UIView cancelPreviousPerformRequestsWithTarget:self];
+    [myTopControl setHidden:YES];
+    [myBottomControl setHidden:YES];
+    [[self.view viewWithTag:101] setHidden:YES];
+    [[self.view viewWithTag:202] setHidden:YES];
+    [[self.view viewWithTag:303] setHidden:YES];
+    [self enumerateChildNodesWithName:@"instructionLabelnode" usingBlock:^(SKNode * _Nonnull node, BOOL * _Nonnull stop) {
+        [node setAlpha:0.0];
+    }];
+}
 
 
 -(void)myRemoveTopControl{
@@ -1127,15 +1157,13 @@ float myLastTime = 0;
         //
         [myTopControl setHidden:YES];
         [myBottomControl setHidden:YES];
+        [self enumerateChildNodesWithName:@"instructionLabelnode" usingBlock:^(SKNode * _Nonnull node, BOOL * _Nonnull stop) {
+            [node setAlpha:0.0];
+        }];
 
-        //
-        //  does this remove the side control?
-        //
-//        [self myDownSwipeAction];
-//        [self performSelector:@selector(myRemoveSideControls) withObject:self afterDelay:5.0];
-        //
-        // only remove the top menu after the delay
-        //        [self myDownSwipeAction];
+        
+//        [self myRemoveInstructionLabels];
+
     }];
     
 }
@@ -1168,9 +1196,14 @@ float myLastTime = 0;
         [[self.view viewWithTag:303] setHidden:YES];
         [(SKLabelNode *) [self childNodeWithName:@"myVortexValueSprite"] setHidden:YES];
         [(SKLabelNode *) [self childNodeWithName:@"myGravityValueSprite"] setHidden:YES];
+        
+        
     } else {
         [myTopControl setHidden:YES];
         [myBottomControl setHidden:YES];
+        [self enumerateChildNodesWithName:@"instructionLabelnode" usingBlock:^(SKNode * _Nonnull node, BOOL * _Nonnull stop) {
+            [node setAlpha:0.0];
+        }];
     }
     
     
@@ -1178,21 +1211,19 @@ float myLastTime = 0;
 
 
 -(void)myRightSwipeAction{
-    [myTopControl setHidden:YES];
-    [myBottomControl setHidden:YES];
+    [self myRemoveAllControlsAndInstructions];
 }
 
 
 -(void)myLeftSwipeAction{
-    [myTopControl setHidden:NO];
-    [myBottomControl setHidden:NO];
+    [self myRemoveAllControlsAndInstructions];
 }
 
 
 -(void)myLongPressAction{
     [self removeAllChildren];
     //    [self addChild:myBG];
-    [self makeMyInstructionLabels];
+    [self myMakeInstructionLabels];
 }
 
 
@@ -1644,9 +1675,15 @@ float myLastTime = 0;
 
 
 
--(void)makeMyInstructionLabels{
+-(void)myMakeInstructionLabels{
     
     UIColor *myLabelColor = [UIColor greenColor];
+    
+    
+    
+    // set up the primary instruction label
+    [ (SKLabelNode *) [self childNodeWithName:@"myPrimaryInstructionLabel"] setText:[NSString stringWithFormat:@"Tap to Drop %@", myBottomControlValues[myObjectToBeDropped]]];
+
     
     mySecondaryHelperLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     [mySecondaryHelperLabel setText:@"Choose an Item Above and Press Play/Pause to Use"];
@@ -1657,11 +1694,11 @@ float myLastTime = 0;
     
     
     
-    SKAction *myLabelAction = [SKAction sequence:@[[SKAction waitForDuration:15.0],
-                                                   [SKAction fadeInWithDuration:1.0],
-                                                   [SKAction waitForDuration:5.0],
-                                                   [SKAction fadeOutWithDuration:1.0],
-                                                   [SKAction waitForDuration:60.0],]];
+//    SKAction *myLabelAction = [SKAction sequence:@[[SKAction waitForDuration:15.0],
+//                                                   [SKAction fadeInWithDuration:1.0],
+//                                                   [SKAction waitForDuration:5.0],
+//                                                   [SKAction fadeOutWithDuration:1.0],
+//                                                   [SKAction waitForDuration:60.0],]];
     
     
     
@@ -1669,88 +1706,96 @@ float myLastTime = 0;
     SKLabelNode *myLabel1 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     [myLabel1 setText:@"Top Buttons Drop"];
     //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
-    [myLabel1 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))];
+    [myLabel1 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 80 )];
     [myLabel1 setFontSize:myLabelFontSize];
     [myLabel1 setFontColor:myLabelColor];
     [myLabel1 setAlpha:0.0];
+    [myLabel1 setName:@"instructionLabelnode"];
     [self addChild:myLabel1];
-    [myLabel1 runAction:[SKAction repeatActionForever:myLabelAction]];
+//    [myLabel1 runAction:[SKAction repeatActionForever:myLabelAction]];
     
     
     SKLabelNode *myLabel2 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
-    [myLabel2 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-20)];
+    [myLabel2 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)+60)];
     [myLabel2 setFontSize:myLabelFontSize];
     [myLabel2 setFontColor:myLabelColor];
     [myLabel2 setText:@"Colors, Textures, Pictures"];
     [myLabel2 setAlpha:0.0];
+    [myLabel2 setName:@"instructionLabelnode"];
     [self addChild:myLabel2];
-    [myLabel2 runAction:[SKAction repeatActionForever:myLabelAction]];
+//    [myLabel2 runAction:[SKAction repeatActionForever:myLabelAction]];
     
     SKLabelNode *myLabel3 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
-    [myLabel3 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-40)];
+    [myLabel3 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)+40)];
     [myLabel3 setFontSize:myLabelFontSize];
     [myLabel3 setFontColor:myLabelColor];
     [myLabel3 setText:@"Bottom Buttons for "];
+    [myLabel3 setName:@"instructionLabelnode"];
     [myLabel3 setAlpha:0.0];
     [self addChild:myLabel3];
-    [myLabel3 runAction:[SKAction repeatActionForever:myLabelAction]];
+//    [myLabel3 runAction:[SKAction repeatActionForever:myLabelAction]];
     
     
     SKLabelNode *myLabel4 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
-    [myLabel4 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-60)];
+    [myLabel4 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)+20)];
     [myLabel4 setFontSize:myLabelFontSize];
     [myLabel4 setFontColor:myLabelColor];
     [myLabel4 setText:@"Vortex Gravity Force"];
+    [myLabel4 setName:@"instructionLabelnode"];
     [myLabel4 setAlpha:0.0];
     [self addChild:myLabel4];
-    [myLabel4 runAction:[SKAction repeatActionForever:myLabelAction]];
+//    [myLabel4 runAction:[SKAction repeatActionForever:myLabelAction]];
     
     
     
     SKLabelNode *myLabel5 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
-    [myLabel5 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-100)];
+    [myLabel5 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))];
     [myLabel5 setFontSize:myLabelFontSize];
     [myLabel5 setFontColor:myLabelColor];
     [myLabel5 setText:@"Swipe Up for Menus"];
+    [myLabel5 setName:@"instructionLabelnode"];
     [myLabel5 setAlpha:0.0];
     [self addChild:myLabel5];
-    [myLabel5 runAction:[SKAction repeatActionForever:myLabelAction]];
+//    [myLabel5 runAction:[SKAction repeatActionForever:myLabelAction]];
     
     
     SKLabelNode *myLabel6 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
-    [myLabel6 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-140)];
+    [myLabel6 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-20)];
     [myLabel6 setFontSize:myLabelFontSize];
     [myLabel6 setFontColor:myLabelColor];
     [myLabel6 setText:@"Swipe Down to Exit Menus"];
+    [myLabel6 setName:@"instructionLabelnode"];
     [myLabel6 setAlpha:0.0];
     [self addChild:myLabel6];
-    [myLabel6 runAction:[SKAction repeatActionForever:myLabelAction]];
+//    [myLabel6 runAction:[SKAction repeatActionForever:myLabelAction]];
     
     
     SKLabelNode *myLabel7 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
-    [myLabel7 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-160)];
+    [myLabel7 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-40)];
     [myLabel7 setFontSize:myLabelFontSize];
     [myLabel7 setFontColor:myLabelColor];
     [myLabel7 setText:@"Long Press to"];
+    [myLabel7 setName:@"instructionLabelnode"];
     [myLabel7 setAlpha:0.0];
     [self addChild:myLabel7];
-    [myLabel7 runAction:[SKAction repeatActionForever:myLabelAction]];
+//    [myLabel7 runAction:[SKAction repeatActionForever:myLabelAction]];
     
     SKLabelNode *myLabel8 = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     //    , tap with two fingers to create snow, tap with three fingers to create smoke, swipe right to clear the screen!"];
-    [myLabel8 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-180)];
+    [myLabel8 setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-60)];
     [myLabel8 setFontSize:myLabelFontSize];
     [myLabel8 setFontColor:myLabelColor];
     [myLabel8 setText:@"Remove all Objects"];
+    [myLabel8 setName:@"instructionLabelnode"];
     [myLabel8 setAlpha:0.0];
     [self addChild:myLabel8];
-    [myLabel8 runAction:[SKAction repeatActionForever:myLabelAction]];
+//    [myLabel8 runAction:[SKAction repeatActionForever:myLabelAction]];
     
     
     //@"Swipe Left to Reset Color Mass to Default Values"
