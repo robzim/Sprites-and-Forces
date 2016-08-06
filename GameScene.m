@@ -319,7 +319,7 @@ float myLastTime = 0;
     myQueue = [NSOperationQueue mainQueue];
     [myQueue addOperationWithBlock: ^{
         
-        NSString *myVortexEmitterPath = [[NSBundle mainBundle] pathForResource:@"myVortexParticle" ofType:@"sks"] ;
+        NSString *myVortexEmitterPath = [[NSBundle mainBundle] pathForResource:@"myVortexParticleSystem" ofType:@"sks"] ;
         //                SKPhysicsBody *myVortexEmitterPhysicsBody = [SKPhysicsBody bodyWithCircleOfRadius:1];
         SKEmitterNode *myVortexEmitterNode = [NSKeyedUnarchiver unarchiveObjectWithFile:myVortexEmitterPath];
         SKFieldNode *myVortexFieldNode = [SKFieldNode vortexField];
@@ -351,7 +351,7 @@ float myLastTime = 0;
         //
         //    SKSpriteNode *myForceImage = [SKSpriteNode spriteNodeWithImageNamed:@"rzForces Image.png"];
         
-        NSString *mySpringEmitterNodePath = [[NSBundle mainBundle] pathForResource:@"myGravityParticle" ofType:@"sks"];
+        NSString *mySpringEmitterNodePath = [[NSBundle mainBundle] pathForResource:@"myGravityParticleSystem" ofType:@"sks"];
         SKEmitterNode *mySpringNodeEmitter =  [NSKeyedUnarchiver unarchiveObjectWithFile:mySpringEmitterNodePath];
         
         SKFieldNode *myRadialGravityNode = [SKFieldNode radialGravityField ];

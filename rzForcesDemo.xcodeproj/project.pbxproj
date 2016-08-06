@@ -59,7 +59,9 @@
 		7CCA7F7F1D5647F8008CC3F3 /* Swirly.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CCA7F591D5647F8008CC3F3 /* Swirly.png */; };
 		7CCA7F801D5647F8008CC3F3 /* Wood.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CCA7F5A1D5647F8008CC3F3 /* Wood.png */; };
 		7CCA7F811D5647F8008CC3F3 /* Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CCA7F5B1D5647F8008CC3F3 /* Yellow.png */; };
-		7CE428491CF246EB00599FC1 /* myGravityParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7CE428481CF246EB00599FC1 /* myGravityParticle.sks */; };
+		7CE14C701D5666070020B9FA /* myGravityParticleSystem.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7CE14C6E1D5666070020B9FA /* myGravityParticleSystem.sks */; };
+		7CE14C711D5666070020B9FA /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE14C6F1D5666070020B9FA /* spark.png */; };
+		7CE428491CF246EB00599FC1 /* myVortexParticleSystem.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7CE428481CF246EB00599FC1 /* myVortexParticleSystem.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,7 +137,9 @@
 		7CCA7F591D5647F8008CC3F3 /* Swirly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Swirly.png; path = myTextureAtlas.atlas/Swirly.png; sourceTree = "<group>"; };
 		7CCA7F5A1D5647F8008CC3F3 /* Wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Wood.png; path = myTextureAtlas.atlas/Wood.png; sourceTree = "<group>"; };
 		7CCA7F5B1D5647F8008CC3F3 /* Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Yellow.png; path = myTextureAtlas.atlas/Yellow.png; sourceTree = "<group>"; };
-		7CE428481CF246EB00599FC1 /* myGravityParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = myGravityParticle.sks; sourceTree = "<group>"; };
+		7CE14C6E1D5666070020B9FA /* myGravityParticleSystem.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = myGravityParticleSystem.sks; sourceTree = "<group>"; };
+		7CE14C6F1D5666070020B9FA /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		7CE428481CF246EB00599FC1 /* myVortexParticleSystem.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = myVortexParticleSystem.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,7 +206,9 @@
 				7C0D0AA81A52C9480016A961 /* Info.plist */,
 				7C0D0AA91A52C9480016A961 /* main.m */,
 				7CA4BA321CF2236B00207C14 /* pia18014-full.jpg */,
-				7CE428481CF246EB00599FC1 /* myGravityParticle.sks */,
+				7CE428481CF246EB00599FC1 /* myVortexParticleSystem.sks */,
+				7CE14C6E1D5666070020B9FA /* myGravityParticleSystem.sks */,
+				7CE14C6F1D5666070020B9FA /* spark.png */,
 				7C22AD251A599B0100400BCF /* myFireFlies.sks */,
 				7C0D0AD41A52CCB20016A961 /* MyParticle.sks */,
 				7CA4BA391CF2236B00207C14 /* myVortexParticle.sks */,
@@ -372,7 +378,7 @@
 				7CCA7F6B1D5647F8008CC3F3 /* Blue.png in Resources */,
 				7CA4BA2E1CF2235600207C14 /* hs-2011-31-e-hires_jpg.jpg in Resources */,
 				7CCA7F621D5647F8008CC3F3 /* 9464655973_9d00c231a0_o.png in Resources */,
-				7CE428491CF246EB00599FC1 /* myGravityParticle.sks in Resources */,
+				7CE428491CF246EB00599FC1 /* myVortexParticleSystem.sks in Resources */,
 				7CCA7F751D5647F8008CC3F3 /* Leopard.png in Resources */,
 				7CCA7F661D5647F8008CC3F3 /* 9467448026_7d146fb585_o.png in Resources */,
 				7CCA7F681D5647F8008CC3F3 /* alpha-5052129615_e3ea876e19_o.png in Resources */,
@@ -387,11 +393,13 @@
 				7CCA7F7D1D5647F8008CC3F3 /* spark.png in Resources */,
 				7CCA7F6E1D5647F8008CC3F3 /* Checker.png in Resources */,
 				7CCA7F6D1D5647F8008CC3F3 /* BrownSwirly.png in Resources */,
+				7CE14C701D5666070020B9FA /* myGravityParticleSystem.sks in Resources */,
 				7CCA7F7A1D5647F8008CC3F3 /* Red.png in Resources */,
 				7CCA7F6F1D5647F8008CC3F3 /* etacarinae_hubble_900.png in Resources */,
 				7CCA7F811D5647F8008CC3F3 /* Yellow.png in Resources */,
 				7CCA7F731D5647F8008CC3F3 /* Grey.png in Resources */,
 				7C0D0AD61A52CCB20016A961 /* MyParticle.sks in Resources */,
+				7CE14C711D5666070020B9FA /* spark.png in Resources */,
 				7CCA7F5E1D5647F8008CC3F3 /* 5052744574_cc6c7338be_o.png in Resources */,
 				7CCA7F7B1D5647F8008CC3F3 /* Rocks.png in Resources */,
 				7CCA7F671D5647F8008CC3F3 /* 17125224860_dfdc354bd4_o.png in Resources */,

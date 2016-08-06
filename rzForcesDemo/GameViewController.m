@@ -151,7 +151,6 @@ SKView *myView2;
 }
 
 - (IBAction)myVortexStepperPressed:(UIStepper *)sender {
-    
     NSLog(@"VortexStep Pressed");
     [_myVortexStrength setText:[NSString stringWithFormat:   @"Vortex = %0.2f",_myVortexStepper.value/10.0]];
     myVStrength = [ _myVortexStepper value ];
