@@ -13,6 +13,18 @@
 @interface GameViewController : UIViewController<RPPreviewViewControllerDelegate, RPScreenRecorderDelegate>
 @property RPPreviewViewController *myReplayPreviewController;
 @property RPScreenRecorder *myReplayScreenRecorder;
+
+
+
+- (IBAction)myTrailsButtonPressed:(UIButton *)sender;
+- (IBAction)myColorsButtonPressed:(UIButton *)sender;
+- (IBAction)mySpaceButtonPressed:(UIButton *)sender;
+- (IBAction)myTexturesButtonPressed:(UIButton *)sender;
+
+- (IBAction)myRemoveSideControls:(UIButton *)sender;
+
+
+
 - (IBAction)myRecordPressed:(UIButton *)sender;
 - (IBAction)myStopPressed:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *myRecButton;
@@ -21,29 +33,39 @@
 @property (weak, nonatomic) IBOutlet UIStackView *myScreenRecorderStackView;
 
 
-- (IBAction)myShowTrailsButtonPressed:(UIButton *)sender;
-- (IBAction)myHideTrailsButtonPressed:(UIButton *)sender;
-- (IBAction)myShowForcesButtonPressed:(UIButton *)sender;
-- (IBAction)myHideForcesButtonPressed:(UIButton *)sender;
+
+
+- (IBAction)myTrailsSwitchValueChanged:(id)sender;
+- (IBAction)myForcesSwitchValueChanged:(id)sender;
+
+
+- (IBAction)myBottomControlValueChanged:(UISegmentedControl *)sender;
+
+
+@property (weak, nonatomic) IBOutlet UISwitch *myTrailsSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *myForcesSwitch;
 
 
 
 
-- (IBAction)myIncreaseGravityButtonPressed:(UIButton *)sender;
-- (IBAction)myDecreaseGravityButtonPressed:(UIButton *)sender;
 - (IBAction)myResetGravityButtonPressed:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *myGravityStrength;
+@property (weak, nonatomic) IBOutlet UIStepper *myGravityStepper;
 
 
-- (IBAction)myIncreaseVortexButtonPressed:(UIButton *)sender;
-- (IBAction)myDecreaseVortexButtonPressed:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIStepper *myVortexStepper;
+- (IBAction)myVortexStepperPressed:(UIStepper *)sender;
+- (IBAction)myGravityStepperPressed:(UIStepper *)sender;
 - (IBAction)myResetVortexButtonPressed:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *myVortexStrength;
 
 
 
-
-- (IBAction)myMiddleButtonPressed:(UIButton *)sender;
+//
+//  this will re-time the animation of removing the middle button
+//   it should be invoked any time a middle menu button of any type
+//    is selected
+- (IBAction)myMiddleButtonPressed:(UIView *)sender;
 
 
 

@@ -17,7 +17,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [NSThread sleepForTimeInterval:5.0];
+    //
+    //
+    //
+    // rz this sleep keeps the launch screen on for 2 extra seconds
+    //
+    [NSThread sleepForTimeInterval:2.0];
     return YES;
 }
 
