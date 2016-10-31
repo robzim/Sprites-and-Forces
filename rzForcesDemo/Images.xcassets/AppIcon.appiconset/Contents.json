@@ -1,123 +1,141 @@
 {
   "images" : [
     {
-      "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-7.png",
-      "scale" : "1x"
-    },
-    {
-      "size" : "29x29",
-      "idiom" : "iphone",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-6.png",
+      "size" : "20x20",
       "scale" : "2x"
     },
     {
-      "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-5.png",
+      "size" : "20x20",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "iphone",
+      "size" : "29x29",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "iphone",
+      "size" : "29x29",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "iphone",
+      "size" : "29x29",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-4.png",
+      "filename" : "Icon40@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-1-1.png",
+      "filename" : "Icon40@3x.png",
       "scale" : "3x"
     },
     {
-      "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-3.png",
+      "size" : "57x57",
       "scale" : "1x"
     },
     {
-      "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-2.png",
+      "size" : "57x57",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-1.png",
+      "filename" : "Icon60@2x.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
       "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "Icon60@3x.png",
       "scale" : "3x"
     },
     {
+      "idiom" : "ipad",
+      "size" : "20x20",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "20x20",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "ipad",
       "size" : "29x29",
-      "idiom" : "ipad",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-8.png",
       "scale" : "1x"
     },
     {
+      "idiom" : "ipad",
       "size" : "29x29",
-      "idiom" : "ipad",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-13.png",
       "scale" : "2x"
     },
     {
+      "idiom" : "ipad",
       "size" : "40x40",
-      "idiom" : "ipad",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-9.png",
       "scale" : "1x"
     },
     {
+      "idiom" : "ipad",
       "size" : "40x40",
-      "idiom" : "ipad",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-14.png",
       "scale" : "2x"
     },
     {
-      "size" : "50x50",
       "idiom" : "ipad",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-11.png",
+      "size" : "50x50",
       "scale" : "1x"
     },
     {
-      "size" : "50x50",
       "idiom" : "ipad",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-15.png",
+      "size" : "50x50",
       "scale" : "2x"
     },
     {
-      "size" : "72x72",
       "idiom" : "ipad",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-10.png",
+      "size" : "72x72",
       "scale" : "1x"
     },
     {
-      "size" : "72x72",
       "idiom" : "ipad",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-16.png",
+      "size" : "72x72",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-12.png",
+      "filename" : "Icon76.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM-17.png",
+      "filename" : "Icon76@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "iOS Simulator Screen Shot Jan 13, 2015, 7.41.51 AM.png",
+      "filename" : "Icon83.5@2x.png",
       "scale" : "2x"
+    },
+    {
+      "idiom" : "car",
+      "size" : "60x60",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "car",
+      "size" : "60x60",
+      "scale" : "3x"
     }
   ],
   "info" : {

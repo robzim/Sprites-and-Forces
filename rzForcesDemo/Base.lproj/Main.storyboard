@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11173.2" systemVersion="16A254g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LVB-YS-i5n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LVB-YS-i5n">
+    <device id="ipad12_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11143.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,97 +18,82 @@
                         <viewControllerLayoutGuide type="bottom" id="b3d-qh-BLL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bdc-N1-crn" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <stackView contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nZF-Aq-0yW">
+                            <stackView tag="9999" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="nZF-Aq-0yW" userLabel="Controls Stack View">
+                                <rect key="frame" x="379" y="583" width="266" height="200"/>
                                 <subviews>
-                                    <stackView hidden="YES" opaque="NO" tag="101" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Bef-aT-ZZr">
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrd-TZ-8rj">
-                                                <state key="normal" title="Record"/>
-                                                <connections>
-                                                    <action selector="myRecordPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="u34-mV-ow7"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1j-6H-SH1">
-                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
-                                                <state key="normal" title="Recording">
-                                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmM-4p-UZ3">
-                                                <state key="normal" title="Stop"/>
-                                                <connections>
-                                                    <action selector="myStopPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="zF5-np-BOr"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
                                     <stackView opaque="NO" tag="999" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="ScL-tW-xJF" userLabel="my Drop Items Stack View">
+                                        <rect key="frame" x="20" y="0.0" width="226" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNb-r6-OV4">
+                                                <rect key="frame" x="0.0" y="0.0" width="41" height="30"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" title="Trails"/>
                                                 <connections>
-                                                    <action selector="myRemoveSideControls:" destination="LVB-YS-i5n" eventType="touchUpInside" id="wrv-TY-SUb"/>
                                                     <action selector="myTrailsButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="DWr-kL-Ntb"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGw-ao-sHd" userLabel="Colors">
+                                                <rect key="frame" x="50" y="0.0" width="48" height="30"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" title="Colors"/>
                                                 <connections>
                                                     <action selector="myColorsButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="al8-Nm-akS"/>
-                                                    <action selector="myRemoveSideControls:" destination="LVB-YS-i5n" eventType="touchUpInside" id="rhA-wi-xB3"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSC-fX-iAT">
+                                                <rect key="frame" x="107" y="0.0" width="64" height="30"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" title="Textures"/>
                                                 <connections>
-                                                    <action selector="myRemoveSideControls:" destination="LVB-YS-i5n" eventType="touchUpInside" id="LNa-Jx-hxm"/>
                                                     <action selector="myTexturesButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="rUy-db-Xoo"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQO-Bt-piN">
+                                                <rect key="frame" x="180" y="0.0" width="46" height="30"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" title="Space"/>
                                                 <connections>
-                                                    <action selector="myRemoveSideControls:" destination="LVB-YS-i5n" eventType="touchUpInside" id="8KJ-qy-cCg"/>
                                                     <action selector="mySpaceButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="GxS-jn-8yD"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <stackView hidden="YES" opaque="NO" tag="303" contentMode="scaleToFill" alignment="top" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="8hE-YX-SAH" userLabel="ShowHide Stack View">
+                                        <rect key="frame" x="59" y="34" width="148" height="49"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ic3-Y4-d9W" userLabel="Trails Stack View">
+                                                <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trails" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvA-H3-7dF">
+                                                        <rect key="frame" x="0.0" y="0.0" width="49" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <switch opaque="NO" tag="666" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yWe-U8-TT9">
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yWe-U8-TT9">
+                                                        <rect key="frame" x="0.0" y="18" width="51" height="31"/>
                                                         <connections>
-                                                            <action selector="myMiddleButtonPressed:" destination="LVB-YS-i5n" eventType="valueChanged" id="Et0-jT-PqG"/>
                                                             <action selector="myTrailsSwitchValueChanged:" destination="LVB-YS-i5n" eventType="valueChanged" id="WgV-Cf-Zz0"/>
                                                         </connections>
                                                     </switch>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gd8-Eg-e0m" userLabel="Forces Stack View">
+                                                <rect key="frame" x="99" y="0.0" width="49" height="49"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forces" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpI-vL-KBe">
+                                                        <rect key="frame" x="0.0" y="0.0" width="49" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <switch opaque="NO" tag="777" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Naz-61-rd7">
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Naz-61-rd7">
+                                                        <rect key="frame" x="0.0" y="18" width="51" height="31"/>
                                                         <connections>
                                                             <action selector="myForcesSwitchValueChanged:" destination="LVB-YS-i5n" eventType="valueChanged" id="Y63-BX-dvY"/>
-                                                            <action selector="myMiddleButtonPressed:" destination="LVB-YS-i5n" eventType="valueChanged" id="hMY-5M-f66"/>
                                                         </connections>
                                                     </switch>
                                                 </subviews>
@@ -112,44 +101,50 @@
                                         </subviews>
                                     </stackView>
                                     <stackView hidden="YES" opaque="NO" tag="202" contentMode="scaleToFill" alignment="bottom" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="L2O-eh-li8" userLabel="Forces Stack View">
+                                        <rect key="frame" x="29.5" y="87" width="207" height="81"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XU0-BA-Zgi" userLabel="Vortex Stack View">
+                                                <rect key="frame" x="0.0" y="0.0" width="94" height="81"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="111" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vortex = 1.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xA8-Rl-cEC">
+                                                        <rect key="frame" x="2" y="0.0" width="90.5" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minimumValue="-50" maximumValue="50" stepValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="U2O-JR-Yr8" userLabel="myVortexStepper">
+                                                        <rect key="frame" x="0.0" y="18" width="94" height="29"/>
                                                         <connections>
-                                                            <action selector="myMiddleButtonPressed:" destination="LVB-YS-i5n" eventType="valueChanged" id="tpM-Vh-7bs"/>
                                                             <action selector="myVortexStepperPressed:" destination="LVB-YS-i5n" eventType="valueChanged" id="cLI-Vn-9tA"/>
                                                         </connections>
                                                     </stepper>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oee-uf-lgP">
+                                                        <rect key="frame" x="24" y="47" width="46" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <state key="normal" title="Reset"/>
                                                         <connections>
-                                                            <action selector="myMiddleButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="tf4-Xj-c6A"/>
                                                             <action selector="myResetVortexButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="riH-nF-hsR"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tvu-57-2EX" userLabel="Gravity Stack View">
+                                                <rect key="frame" x="112" y="0.0" width="95" height="81"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="222" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gravity = 1.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wng-nI-q9y">
+                                                        <rect key="frame" x="0.0" y="0.0" width="95" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="-10" maximumValue="10" stepValue="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="Rp5-uw-qi7" userLabel="myGravityStepper">
+                                                        <rect key="frame" x="0.5" y="18" width="94" height="29"/>
                                                         <connections>
                                                             <action selector="myGravityStepperPressed:" destination="LVB-YS-i5n" eventType="valueChanged" id="ggn-sM-tPc"/>
-                                                            <action selector="myMiddleButtonPressed:" destination="LVB-YS-i5n" eventType="valueChanged" id="8XD-A8-CeB"/>
                                                         </connections>
                                                     </stepper>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppm-VJ-iHY">
+                                                        <rect key="frame" x="24.5" y="47" width="46" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <state key="normal" title="Reset"/>
                                                         <connections>
@@ -161,6 +156,7 @@
                                         </subviews>
                                     </stackView>
                                     <segmentedControl hidden="YES" opaque="NO" tag="888" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lNp-lP-2FU">
+                                        <rect key="frame" x="0.0" y="172" width="266" height="29"/>
                                         <segments>
                                             <segment title="Vortex"/>
                                             <segment title="Gravity"/>
@@ -173,9 +169,37 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </stackView>
+                            <stackView opaque="NO" tag="101" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Bef-aT-ZZr">
+                                <rect key="frame" x="411" y="5" width="203" height="32"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1011" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrd-TZ-8rj">
+                                        <rect key="frame" x="0.0" y="0.0" width="49" height="32"/>
+                                        <state key="normal" title="Record"/>
+                                        <connections>
+                                            <action selector="myRecordPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="u34-mV-ow7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1012" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1j-6H-SH1">
+                                        <rect key="frame" x="69" y="0.0" width="82" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
+                                        <state key="normal" title="Recording">
+                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" tag="1013" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmM-4p-UZ3">
+                                        <rect key="frame" x="171" y="0.0" width="32" height="32"/>
+                                        <state key="normal" title="Stop"/>
+                                        <connections>
+                                            <action selector="myStopPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="zF5-np-BOr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Bef-aT-ZZr" firstAttribute="centerX" secondItem="bdc-N1-crn" secondAttribute="centerX" id="50G-xX-SoN"/>
+                            <constraint firstItem="Bef-aT-ZZr" firstAttribute="top" secondItem="bdc-N1-crn" secondAttribute="topMargin" constant="5" id="kLD-Ow-vLG"/>
                             <constraint firstItem="nZF-Aq-0yW" firstAttribute="centerX" secondItem="bdc-N1-crn" secondAttribute="centerX" id="kuB-yo-eXc"/>
                             <constraint firstItem="nZF-Aq-0yW" firstAttribute="centerY" secondItem="bdc-N1-crn" secondAttribute="centerY" id="uG0-KB-qgH"/>
                         </constraints>

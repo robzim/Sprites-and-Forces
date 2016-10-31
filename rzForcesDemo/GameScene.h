@@ -18,11 +18,22 @@
 @property SKSpriteNode *myCursorSprite;
 //@property SKSpriteNode *myColorSprite;
 
+
+@property UIStackView *myControlsStackView;
 @property SKLabelNode *mySecondaryHelperLabel;
 @property UIStackView *myDropItemsControl;
 @property UIStackView *myShowHideForcesStackView;
 @property UIStackView *myAdjustForcesStackView;
 @property UIStackView *myScreenRecorderStackView;
+
+
+
+@property UIButton *myRecordButton;
+@property UIButton *myRecordIngButton;
+@property UIButton *myStopButton;
+
+
+
 @property NSArray *myTopControlValues;
 @property UISegmentedControl *myPlaceForcesControl;
 @property NSArray *myBottomControlValues;

@@ -21,7 +21,6 @@
 - (IBAction)mySpaceButtonPressed:(UIButton *)sender;
 - (IBAction)myTexturesButtonPressed:(UIButton *)sender;
 
-- (IBAction)myRemoveSideControls:(UIButton *)sender;
 
 
 
@@ -59,13 +58,6 @@
 - (IBAction)myResetVortexButtonPressed:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *myVortexStrength;
 
-
-
-//
-//  this will re-time the animation of removing the middle button
-//   it should be invoked any time a middle menu button of any type
-//    is selected
-- (IBAction)myMiddleButtonPressed:(UIView *)sender;
 
 
 

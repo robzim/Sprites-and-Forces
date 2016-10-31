@@ -94,15 +94,6 @@ SKView *myView2;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"droptextures" object:self];
 }
 
-- (IBAction)myRemoveSideControls:(UIButton *)sender {
-    [[self.view viewWithTag:202] setAlpha:0.0];
-    [[self.view viewWithTag:303] setAlpha:0.0];
-    [[self.view viewWithTag:888] setAlpha:0.0];
-    [[self.view viewWithTag:101] setAlpha:0.0];
-    [myScene2 enumerateChildNodesWithName:@"instructionLabelnode" usingBlock:^(SKNode * _Nonnull node, BOOL * _Nonnull stop) {
-        [node setAlpha:0.0];
-    }];
-}
 
 -(void)myColorsButtonPressed:(UIButton *)sender{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"dropcolors" object:self];
@@ -138,14 +129,25 @@ SKView *myView2;
     NSLog(@"Reset Gravity Button Pressed");
     myGStrength = 1.0f;
     [ _myGravityStrength  setText:[NSString stringWithFormat:   @"Gravity = %0.2f",myGStrength/1.0]];
-    //    [(SKLabelNode *) [myScene2 childNodeWithName:@"myGravityValueSprite"] setText: [NSString stringWithFormat:   @"Gravity = %0.2f",myGStregnth/1.0]];
-    [myScene2 enumerateChildNodesWithName:@"gravityposition" usingBlock:^(SKNode *node, BOOL *stop) {
-        // the position sprite is the child , the gravity node is the child of hte position sprite
-        [node enumerateChildNodesWithName:@"gravity" usingBlock:^(SKNode *node, BOOL *stop) {
-            [ (SKFieldNode *)   node setStrength: myGStrength];
+    ///
+    //   when there's no gravity this crashes!!!
+    
+    if ([myScene2 childNodeWithName:@"gravityposition"]) {
+        [myScene2 enumerateChildNodesWithName:@"gravityposition" usingBlock:^(SKNode *node, BOOL *stop) {
+            // the position sprite is the child , the gravity node is the child of hte position sprite
+            [node enumerateChildNodesWithName:@"gravity" usingBlock:^(SKNode *node, BOOL *stop) {
+                [ (SKFieldNode *)   node setStrength: myGStrength];
+            }];
         }];
-    }];
-    [[myView2 viewWithTag:101] setAlpha:0.0];
+    }
+    
+    //
+    //  recorder 101
+    //  forces 202
+    //  show/hide 303
+    //  place objects 999
+    //
+//    [[myView2 viewWithTag:101] setAlpha:0.0];
     [[myView2 viewWithTag:202] setAlpha:0.0];
     [[myView2 viewWithTag:303] setAlpha:0.0];
 }
@@ -200,32 +202,14 @@ SKView *myView2;
             NSLog(@"myVortexStrength after increase vortex = %ld", (long)myVStrength) ;
         }];
     }];
-    [[myView2 viewWithTag:101] setAlpha:0.0];
-    [[myView2 viewWithTag:202] setAlpha:0.0];
-    [[myView2 viewWithTag:303] setAlpha:0.0];
+    [[self.view viewWithTag:202] setAlpha:0.0];
+    [[self.view viewWithTag:303] setAlpha:0.0];
 }
 
-- (IBAction)myMiddleButtonPressed:(UIButton *)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"retimesidebuttons" object:self];
-}
 
 - (IBAction)myTest:(id)sender {
 }
 
-
-
-
-
-//- (IBAction)myShowForcesButtonPressed:(id)sender {
-//    //    NSLog(@"Show Forces Button Pressed");
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"showforces" object:self];
-//    
-//}
-//
-//- (IBAction)myHideForcesButtonPressed:(id)sender {
-//    //    NSLog(@"Hide Forces Button Pressed");
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideforces" object:self];
-//}
 
 - (IBAction)myTrailsSwitchValueChanged:(id)sender {
     if (_myTrailsSwitch.isOn) {
@@ -265,27 +249,12 @@ SKView *myView2;
   [myScene2 enumerateChildNodesWithName:@"myPrimaryInstructionLabel" usingBlock:^(SKNode * _Nonnull node, BOOL * _Nonnull stop) {
       if ([node respondsToSelector:@selector(setText:)]) {
           NSLog(@"In myBotomControlValue Changed  %@",myForcesArray[sender.selectedSegmentIndex]);
-          [(SKLabelNode *) node setText:[NSString stringWithFormat:@"Tap to Place %@ or Swipe Up for Menus",myForcesArray[sender.selectedSegmentIndex]]];
+          [(SKLabelNode *) node setText:[NSString stringWithFormat:@"Tap for %@.  Swipe Up or Down for Menus",myForcesArray[sender.selectedSegmentIndex]]];
       }
   }];
     NSLog(@"done with mybotomcontrolvaluechanged method - rz");
 //    [[NSNotificationCenter defaultCenter] postNotificationName:@"forcesswitchchanged" object:self];
 }
-
-//- (IBAction)myShowTrailsButtonPressed:(id)sender {
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"showtrails" object:self];
-//}
-//
-//
-//- (IBAction)myHideTrailsButtonPressed:(id)sender {
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"hidetrails" object:self];
-//}
-
-
-
-
-
-
 
 
 
