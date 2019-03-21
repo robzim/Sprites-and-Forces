@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5834912B20419D5D00B3B216 /* Blue-DoubleArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5834912920419D5C00B3B216 /* Blue-DoubleArrow.png */; };
+		5834912C20419D5D00B3B216 /* Large-Blue-DoubleArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5834912A20419D5D00B3B216 /* Large-Blue-DoubleArrow.png */; };
 		7C0D0AAA1A52C9480016A961 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0D0AA91A52C9480016A961 /* main.m */; };
 		7C0D0AAD1A52C9490016A961 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0D0AAC1A52C9490016A961 /* AppDelegate.m */; };
 		7C0D0AB81A52C9490016A961 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D0AB61A52C9490016A961 /* Main.storyboard */; };
@@ -69,6 +71,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5834912920419D5C00B3B216 /* Blue-DoubleArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue-DoubleArrow.png"; sourceTree = "<group>"; };
+		5834912A20419D5D00B3B216 /* Large-Blue-DoubleArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Large-Blue-DoubleArrow.png"; sourceTree = "<group>"; };
 		7C0D0AA41A52C9480016A961 /* rzForcesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rzForcesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C0D0AA81A52C9480016A961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C0D0AA91A52C9480016A961 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -197,6 +201,8 @@
 				7C0D0AAC1A52C9490016A961 /* AppDelegate.m */,
 				7C1A06B71D8EC18D0007C188 /* hubble_friday_08212015.png */,
 				7C366FCB1D8F3A0E00CC3B4E /* Checker.png */,
+				5834912920419D5C00B3B216 /* Blue-DoubleArrow.png */,
+				5834912A20419D5D00B3B216 /* Large-Blue-DoubleArrow.png */,
 				7C366FC71D8F393000CC3B4E /* flame.png */,
 				7C366FC91D8F39BC00CC3B4E /* Rocks.png */,
 				7C1A06BA1D8EC18D0007C188 /* Marble.png */,
@@ -323,7 +329,7 @@
 		7C0D0A9C1A52C9480016A961 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Robert Zimmelman";
 				TargetAttributes = {
 					7C0D0AA31A52C9480016A961 = {
@@ -380,8 +386,10 @@
 				7C0D0AB81A52C9490016A961 /* Main.storyboard in Resources */,
 				7C22AD261A599B0100400BCF /* myFireFlies.sks in Resources */,
 				7C366FD41D8F3B0E00CC3B4E /* Yellow.png in Resources */,
+				5834912B20419D5D00B3B216 /* Blue-DoubleArrow.png in Resources */,
 				7CA4BA3E1CF2236B00207C14 /* pia18014-full.jpg in Resources */,
 				7C366FCC1D8F3A0E00CC3B4E /* Checker.png in Resources */,
+				5834912C20419D5D00B3B216 /* Large-Blue-DoubleArrow.png in Resources */,
 				7C366FD21D8F3B0E00CC3B4E /* Blue.png in Resources */,
 				7C366FE31D8F3C3700CC3B4E /* etacarinae_hubble_900.png in Resources */,
 				7C0D0ADB1A52D00E0016A961 /* GameScene.sks in Resources */,
@@ -476,14 +484,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -506,7 +520,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -522,14 +536,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -546,7 +566,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Sprites and Forces";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "Sprites and Forces";
 				SDKROOT = iphoneos;
@@ -561,7 +581,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = rzForcesDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.zimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -577,7 +597,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				INFOPLIST_FILE = rzForcesDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.zimmelman.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

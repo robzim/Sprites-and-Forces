@@ -24,8 +24,8 @@
 
 
 
-- (IBAction)myRecordPressed:(UIButton *)sender;
-- (IBAction)myStopPressed:(UIButton *)sender;
+//- (IBAction)myRecordPressed:(UIButton *)sender;
+//- (IBAction)myStopPressed:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *myRecButton;
 @property (weak, nonatomic) IBOutlet UIButton *myStopButton;
 @property (weak, nonatomic) IBOutlet UIButton *myRecordingIndicator;

@@ -62,19 +62,23 @@ SKView *myView2;
     //    scene.scaleMode = SKSceneScaleModeAspectFill;
     //    [scene setBackgroundColor:[UIColor lightGrayColor]];
     // Present the scene.
-    myReplayScreenRecorder = [RPScreenRecorder sharedRecorder];
-    // hide the record indicator when the recorder isn't recording
-    [_myRecordingIndicator setHidden:!myReplayScreenRecorder.isRecording];
-    // hide the record button when the recorder is recording
-    [_myRecButton setHidden:myReplayScreenRecorder.isRecording];
-    [_myStopButton setHidden:!myReplayScreenRecorder.isRecording];
-    
-    [myReplayScreenRecorder setDelegate:self];
-    
-    [_myScreenRecorderStackView setHidden:!myReplayScreenRecorder.isAvailable];
-    NSLog(@"myReplayScreenRecorder %c",myReplayScreenRecorder.recording);
+//    myReplayScreenRecorder = [RPScreenRecorder sharedRecorder];
+//    // hide the record indicator when the recorder isn't recording
+//    [_myRecordingIndicator setHidden:!myReplayScreenRecorder.isRecording];
+//    // hide the record button when the recorder is recording
+//    [_myRecButton setHidden:myReplayScreenRecorder.isRecording];
+//    [_myStopButton setHidden:!myReplayScreenRecorder.isRecording];
+//
+//    [myReplayScreenRecorder setDelegate:self];
+//
+//    [_myScreenRecorderStackView setHidden:!myReplayScreenRecorder.isAvailable];
+//    NSLog(@"myReplayScreenRecorder %c",myReplayScreenRecorder.recording);
     [skView presentScene:scene];
     myView2 = skView;
+
+    
+    
+    // set the two top labels correctly
     
 }
 
@@ -236,24 +240,36 @@ SKView *myView2;
 
 - (IBAction)myBottomControlValueChanged:(UISegmentedControl *)sender {
     [[self.view viewWithTag:999] setAlpha:0.0];
+    [[self.view viewWithTag:887] setAlpha:0.0];
     [[self.view viewWithTag:888] setAlpha:0.0];
     [[self.view viewWithTag:202] setAlpha:0.0];
     [[self.view viewWithTag:303] setAlpha:0.0];
     [myScene2 enumerateChildNodesWithName:@"instructionLabelnode" usingBlock:^(SKNode * _Nonnull node, BOOL * _Nonnull stop) {
         [node setAlpha:0.0];
     }];
-    
-    
-    NSArray *myForcesArray = [NSArray arrayWithObjects:@"Vortex", @"Gravity", @"Anti-Gravity",  nil];
-
-  [myScene2 enumerateChildNodesWithName:@"myPrimaryInstructionLabel" usingBlock:^(SKNode * _Nonnull node, BOOL * _Nonnull stop) {
-      if ([node respondsToSelector:@selector(setText:)]) {
-          NSLog(@"In myBotomControlValue Changed  %@",myForcesArray[sender.selectedSegmentIndex]);
-          [(SKLabelNode *) node setText:[NSString stringWithFormat:@"Tap for %@.  Swipe Up or Down for Menus",myForcesArray[sender.selectedSegmentIndex]]];
-      }
-  }];
+    NSArray *myForcesArray = [NSArray arrayWithObjects:@"Vortex", @"+Gravity", @"-Gravity",  nil];
+    [myScene2 enumerateChildNodesWithName:@"myPrimaryInstructionLabel" usingBlock:^(SKNode * _Nonnull node, BOOL * _Nonnull stop) {
+        if ([node respondsToSelector:@selector(setText:)]) {
+            NSLog(@"In myBotomControlValue Changed  %@",myForcesArray[sender.selectedSegmentIndex]);
+            [(SKLabelNode *) node setText:[NSString stringWithFormat:@"Tap for %@.  Swipe Up or Down for Menus",myForcesArray[sender.selectedSegmentIndex]]];
+        }
+    }];
+    [myScene2 enumerateChildNodesWithName:@"myTopLeftInstructionLabel" usingBlock:^(SKNode * _Nonnull node, BOOL * _Nonnull stop) {
+        if ([node respondsToSelector:@selector(setText:)]) {
+            NSLog(@"In myBotomControlValue Changed  %@",myForcesArray[sender.selectedSegmentIndex]);
+            //            [(SKLabelNode *) node setText:[NSString stringWithFormat:@"Tap =  %@",myForcesArray[sender.selectedSegmentIndex]]];
+            [(SKLabelNode *) node setText:[NSString stringWithFormat:@"Force ="]];
+        }
+    }];
+    [myScene2 enumerateChildNodesWithName:@"myTopRightInstructionLabel" usingBlock:^(SKNode * _Nonnull node, BOOL * _Nonnull stop) {
+        if ([node respondsToSelector:@selector(setText:)]) {
+            NSLog(@"In myBotomControlValue Changed  %@",myForcesArray[sender.selectedSegmentIndex]);
+            //            [(SKLabelNode *) node setText:@"Swipe = Menus"];
+            [(SKLabelNode *) node setText:[NSString stringWithFormat:@"%@",myForcesArray[sender.selectedSegmentIndex]]];
+        }
+    }];
     NSLog(@"done with mybotomcontrolvaluechanged method - rz");
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"forcesswitchchanged" object:self];
+    //    [[NSNotificationCenter defaultCenter] postNotificationName:@"forcesswitchchanged" object:self];
 }
 
 
@@ -285,126 +301,126 @@ SKView *myView2;
 //
 
 
-- (void)previewControllerDidFinish:(RPPreviewViewController *)previewController {
-    NSLog(@"Preview Controller Finished");
-    //
-    ///
-    //  ask to share to social media sites
-    //
-    
-    myReplayScreenRecorder = [RPScreenRecorder sharedRecorder];
-    
-    [previewController dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"dismiss view controller completion block");
-        
-        UIAlertController *myAlertController = [UIAlertController alertControllerWithTitle:nil message:@"Completed Recording!!" preferredStyle:UIAlertControllerStyleAlert];
-        [self addChildViewController:myAlertController ];
-        
-        
-        
-        // hide the record indicator when the recorder isn't recording
-        [_myRecordingIndicator setHidden:!myReplayScreenRecorder.isRecording];
-        // hide the record button when the recorder is recording
-        [_myRecButton setHidden:myReplayScreenRecorder.isRecording];
-        [_myStopButton setHidden:!myReplayScreenRecorder.isRecording];
-        
-    }];
-}
-
-
-
-
-
-
--(void)previewController:(RPPreviewViewController *)previewController didFinishWithActivityTypes:(NSSet<NSString *> *)activityTypes{
-    NSLog(@"recording is done");
-    NSLog(@"Activity Types Are %@",activityTypes);
-}
-
-
-
--(void)screenRecorder:(RPScreenRecorder *)screenRecorder didStopRecordingWithError:(NSError *)error previewViewController:(RPPreviewViewController *)previewViewController{
-    if (!error) {
-        NSLog(@"about to show preview view controller");
-        [self presentViewController:previewViewController animated:YES completion:^{
-            //
-            //  try to get over having to press stop twice
-            //
-            UIAlertController *myAlertController = [UIAlertController alertControllerWithTitle:nil message:@"Completed The Preview!!" preferredStyle:UIAlertControllerStyleAlert];
-            [self addChildViewController:myAlertController ];
-
-            //
-            //            [self myStopPressed:_myStopButton];
-        }];
-        
-    } else {
-        NSLog(@"error stopping recording");
-    }
-    
-}
-
-
--(void)screenRecorderDidChangeAvailability:(RPScreenRecorder *)screenRecorder{
-    NSLog(@"screen recorder availability changed");
-}
-
-
-
-- (IBAction)myRecordPressed:(UIButton *)sender {
-    myReplayScreenRecorder = [RPScreenRecorder sharedRecorder];
-    [myReplayScreenRecorder setDelegate:self];
-    //    [myReplayScreenRecorder setCameraEnabled:YES];
-    [myReplayScreenRecorder setMicrophoneEnabled:YES];
-    if (myReplayScreenRecorder.isAvailable) {
-//        [myReplayScreenRecorder startRecordingWithMicrophoneEnabled:(myReplayScreenRecorder.isMicrophoneEnabled) handler:^(NSError * _Nullable error) {
-        [myReplayScreenRecorder startRecordingWithHandler:^(NSError * _Nullable error) {
-            if (error) {
-                NSLog(@"ERROR %@ starting recording",error.localizedDescription);
-            }
-            else {
-                NSLog(@"recording");
-                          [myReplayScreenRecorder.cameraPreviewView setFrame:CGRectMake(10, 10, 100, 100)];
-                          [self.view addSubview:myReplayScreenRecorder.cameraPreviewView];
-                [[self.view viewWithTag:101] setHidden:NO];
-                [_myRecordingIndicator setHidden:!myReplayScreenRecorder.recording];
-                [_myRecButton setHidden:myReplayScreenRecorder.recording];
-                [_myStopButton setHidden:!myReplayScreenRecorder.recording];
-            }
-        }];
-    }
-}
-
-
-- (IBAction)myStopPressed:(UIButton *)sender {
-    myReplayScreenRecorder = [RPScreenRecorder sharedRecorder];
-    NSLog(@"Stop Pressed");
-    //
-    [myScene2 setPaused:NO];
-    //
-    //
-    // we're going right to the preview view controller here so the below code is also in viewdidload
-    //
-    //
-    [_myRecordingIndicator setHidden:!myReplayScreenRecorder.isRecording];
-    [_myRecButton setHidden:myReplayScreenRecorder.isRecording];
-    [_myStopButton setHidden:!myReplayScreenRecorder.isRecording];
-    [myReplayScreenRecorder stopRecordingWithHandler:^(RPPreviewViewController * _Nullable previewViewController, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"ERROR");
-            NSLog(@"%@",error.localizedDescription);
-        }
-        if (!error) {
-            [previewViewController setPreviewControllerDelegate:self];
-            [previewViewController setEditing:YES animated:YES];
-            [self presentViewController:previewViewController animated:YES completion:^{
-                NSLog(@"recording is done");
-            }];
-        } else {
-            NSLog(@"error = %@",error.localizedDescription);
-        }
-        
-    }];
-}
+//- (void)previewControllerDidFinish:(RPPreviewViewController *)previewController {
+//    NSLog(@"Preview Controller Finished");
+//    //
+//    ///
+//    //  ask to share to social media sites
+//    //
+//
+//    myReplayScreenRecorder = [RPScreenRecorder sharedRecorder];
+//
+//    [previewController dismissViewControllerAnimated:YES completion:^{
+//        NSLog(@"dismiss view controller completion block");
+//
+//        UIAlertController *myAlertController = [UIAlertController alertControllerWithTitle:nil message:@"Completed Recording!!" preferredStyle:UIAlertControllerStyleAlert];
+//        [self addChildViewController:myAlertController ];
+//
+//
+//
+//        // hide the record indicator when the recorder isn't recording
+//        [_myRecordingIndicator setHidden:!myReplayScreenRecorder.isRecording];
+//        // hide the record button when the recorder is recording
+//        [_myRecButton setHidden:myReplayScreenRecorder.isRecording];
+//        [_myStopButton setHidden:!myReplayScreenRecorder.isRecording];
+//
+//    }];
+//}
+//
+//
+//
+//
+//
+//
+//-(void)previewController:(RPPreviewViewController *)previewController didFinishWithActivityTypes:(NSSet<NSString *> *)activityTypes{
+//    NSLog(@"recording is done");
+//    NSLog(@"Activity Types Are %@",activityTypes);
+//}
+//
+//
+//
+//-(void)screenRecorder:(RPScreenRecorder *)screenRecorder didStopRecordingWithError:(NSError *)error previewViewController:(RPPreviewViewController *)previewViewController{
+//    if (!error) {
+//        NSLog(@"about to show preview view controller");
+//        [self presentViewController:previewViewController animated:YES completion:^{
+//            //
+//            //  try to get over having to press stop twice
+//            //
+//            UIAlertController *myAlertController = [UIAlertController alertControllerWithTitle:nil message:@"Completed The Preview!!" preferredStyle:UIAlertControllerStyleAlert];
+//            [self addChildViewController:myAlertController ];
+//
+//            //
+//            //            [self myStopPressed:_myStopButton];
+//        }];
+//
+//    } else {
+//        NSLog(@"error stopping recording");
+//    }
+//
+//}
+//
+//
+//-(void)screenRecorderDidChangeAvailability:(RPScreenRecorder *)screenRecorder{
+//    NSLog(@"screen recorder availability changed");
+//}
+//
+//
+//
+//- (IBAction)myRecordPressed:(UIButton *)sender {
+//    myReplayScreenRecorder = [RPScreenRecorder sharedRecorder];
+//    [myReplayScreenRecorder setDelegate:self];
+//    //    [myReplayScreenRecorder setCameraEnabled:YES];
+//    [myReplayScreenRecorder setMicrophoneEnabled:YES];
+//    if (myReplayScreenRecorder.isAvailable) {
+////        [myReplayScreenRecorder startRecordingWithMicrophoneEnabled:(myReplayScreenRecorder.isMicrophoneEnabled) handler:^(NSError * _Nullable error) {
+//        [myReplayScreenRecorder startRecordingWithHandler:^(NSError * _Nullable error) {
+//            if (error) {
+//                NSLog(@"ERROR %@ starting recording",error.localizedDescription);
+//            }
+//            else {
+//                NSLog(@"recording");
+//                          [myReplayScreenRecorder.cameraPreviewView setFrame:CGRectMake(10, 10, 100, 100)];
+//                          [self.view addSubview:myReplayScreenRecorder.cameraPreviewView];
+//                [[self.view viewWithTag:101] setHidden:NO];
+//                [_myRecordingIndicator setHidden:!myReplayScreenRecorder.recording];
+//                [_myRecButton setHidden:myReplayScreenRecorder.recording];
+//                [_myStopButton setHidden:!myReplayScreenRecorder.recording];
+//            }
+//        }];
+//    }
+//}
+//
+//
+//- (IBAction)myStopPressed:(UIButton *)sender {
+//    myReplayScreenRecorder = [RPScreenRecorder sharedRecorder];
+//    NSLog(@"Stop Pressed");
+//    //
+//    [myScene2 setPaused:NO];
+//    //
+//    //
+//    // we're going right to the preview view controller here so the below code is also in viewdidload
+//    //
+//    //
+//    [_myRecordingIndicator setHidden:!myReplayScreenRecorder.isRecording];
+//    [_myRecButton setHidden:myReplayScreenRecorder.isRecording];
+//    [_myStopButton setHidden:!myReplayScreenRecorder.isRecording];
+//    [myReplayScreenRecorder stopRecordingWithHandler:^(RPPreviewViewController * _Nullable previewViewController, NSError * _Nullable error) {
+//        if (error) {
+//            NSLog(@"ERROR");
+//            NSLog(@"%@",error.localizedDescription);
+//        }
+//        if (!error) {
+//            [previewViewController setPreviewControllerDelegate:self];
+//            [previewViewController setEditing:YES animated:YES];
+//            [self presentViewController:previewViewController animated:YES completion:^{
+//                NSLog(@"recording is done");
+//            }];
+//        } else {
+//            NSLog(@"error = %@",error.localizedDescription);
+//        }
+//
+//    }];
+//}
 
 
 @end

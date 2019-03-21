@@ -85,6 +85,8 @@ int myMenuNumber = 1;
 
 SKSpriteNode *myTextureSprite;
 @implementation GameScene
+NSString *deviceType;
+
 @synthesize myQueue;
 @synthesize myBG;
 @synthesize myPositionSprite;
@@ -100,7 +102,7 @@ SKSpriteNode *myTextureSprite;
 @synthesize myShowHideForcesStackView;
 @synthesize myAdjustForcesStackView;
 @synthesize myScreenRecorderStackView;
-
+@synthesize myPlaceForcesStackView;
 @synthesize myRecordButton;
 @synthesize myRecordIngButton;
 @synthesize myStopButton;
@@ -174,6 +176,20 @@ float myLastTime = 0;
 
 -(void)didMoveToView:(SKView *)view {
     
+    
+    
+    
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *myTempDeviceType = [NSString stringWithCString:systemInfo.machine
+                                                    encoding:NSUTF8StringEncoding];
+    if (myTempDeviceType.length >= 7) {
+        deviceType = [NSString stringWithString: [myTempDeviceType substringWithRange:NSMakeRange(0, 7)]];
+    } else {
+        deviceType = [NSString stringWithString: [myTempDeviceType substringWithRange:NSMakeRange(1, myTempDeviceType.length-1)]];
+    }
+    NSLog(@"Device is %@",deviceType);
+    
     // 101 screen recorder
     // 202 adjust forces
     // 303 show/hide forces
@@ -190,6 +206,7 @@ float myLastTime = 0;
     myRecordIngButton = [self.view viewWithTag:1012];
     myStopButton   = [self.view viewWithTag:1013];
     myDropItemsControl = [self.view viewWithTag:999];
+    myPlaceForcesStackView = [self.view viewWithTag:887];
     myPlaceForcesControl = [self.view viewWithTag:888];
     myShowHideForcesStackView = [self.view viewWithTag:303];
     myAdjustForcesStackView = [self.view viewWithTag:202];
@@ -268,10 +285,10 @@ float myLastTime = 0;
     
     [myDropItemsControl setAlpha:0.0];
     [myPlaceForcesControl setAlpha:0.0];
+    [myPlaceForcesStackView setAlpha:0.0];
     
     
-    
-    [myShowHideForcesStackView setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
+//    [myShowHideForcesStackView setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
 
     
     
@@ -290,8 +307,11 @@ float myLastTime = 0;
     
     [self myMakeInstructionLabels];
     
-    [(SKLabelNode *) [self childNodeWithName:@"myPrimaryInstructionLabel"] setPosition:CGPointMake(self.scene.size.width/2 ,  2 )];
-    
+//    [(SKLabelNode *) [self childNodeWithName:@"myPrimaryInstructionLabel"] setPosition:CGPointMake(self.scene.size.width / 2.0 ,  self.scene.size.height - 50.0 )];
+    [(SKLabelNode *) [self childNodeWithName:@"myPrimaryInstructionLabel"] setPosition:CGPointMake(self.scene.size.width / 2.0 ,  20.0 )];
+    [(SKLabelNode *) [self childNodeWithName:@"myTopLeftInstructionLabel"] setPosition:CGPointMake(40.0 ,  790.0 )];
+    [(SKLabelNode *) [self childNodeWithName:@"myTopRightInstructionLabel"] setPosition:CGPointMake(self.scene.size.width - 40.0 ,  790.0 )];
+
     
     // by making primaryinstructinolabel an instructionlabelnode it can get hidden with the other instructinos
     //    [(SKLabelNode *) [self childNodeWithName:@"myPrimaryInstructionLabel"] setName:@"instructionLabelnode"];
@@ -370,20 +390,32 @@ float myLastTime = 0;
     /* Called when a touch begins */
     myPositionSprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(1, 1)];
     [myPositionSprite setPosition:atPosition];
-    switch (myObjectToBePlaced) {
-        case 0:
-            [self myMakeVortex];
-            break;
-        case 1:
-            // rz gravity
-            [self myMakeGravity];
-            break;
-        case 2:
-            [self myMakeAntiGravity];
-            break;
-        default:
-            break;
-    }
+    
+//    SKLabelNode *myPlaceForceLabel = [SKLabelNode labelNodeWithText:@"Drop?"];
+//    [myPositionSprite addChild: myPlaceForceLabel];
+    
+    
+    
+//    UIAlertController *myForceAlertController = [UIAlertController alertControllerWithTitle:@"Drop Force?" message:@"Drop Here?" preferredStyle:UIAlertControllerStyleAlert];
+//    [myForceAlertController addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        switch (myObjectToBePlaced) {
+            case 0:
+                [self myMakeVortex];
+                break;
+            case 1:
+                // rz gravity
+                [self myMakeGravity];
+                break;
+            case 2:
+                [self myMakeAntiGravity];
+                break;
+            default:
+                break;
+        }
+//    }]];
+//    [myForceAlertController addAction:[UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//        [myForceAlertController dismissViewControllerAnimated:YES completion:nil];
+//          }]];
     
 }
 
@@ -464,10 +496,10 @@ float myLastTime = 0;
             [UIView animateKeyframesWithDuration:0.25 delay:0.0 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
                 [myShowHideForcesStackView setHidden:YES];
                 [myShowHideForcesStackView setAlpha:0.0];
-                [myShowHideForcesStackView setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
-                [myPlaceForcesControl setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
-                [myDropItemsControl setTransform:CGAffineTransformMakeScale(1.1, 1.0)];
-                [myAdjustForcesStackView setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
+//                [myShowHideForcesStackView setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
+//                [myPlaceForcesControl setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
+//                [myDropItemsControl setTransform:CGAffineTransformMakeScale(1.1, 1.0)];
+//                [myAdjustForcesStackView setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
                 [myAdjustForcesStackView setHidden:YES];
                 [myAdjustForcesStackView setAlpha:0.0];
                 [myDropItemsControl setHidden:NO];
@@ -477,15 +509,16 @@ float myLastTime = 0;
                 [myDropItemsControl setAlpha:1.0];
                 [myPlaceForcesControl setHidden:YES];
                 [myPlaceForcesControl setAlpha:0.0];
+                [myPlaceForcesStackView setHidden:YES];
+                [myPlaceForcesStackView setAlpha:0.0];
                 // show the show hide menu
             }];
             if (myDirection == myUpDirection) {
                 myMenuNumber++;
             }
             else if (myDirection == myDownDirection) {
-                myMenuNumber=4;
+                myMenuNumber=5;
             }
-
             break;
         }
         case 2:
@@ -497,16 +530,15 @@ float myLastTime = 0;
             //  3. adjust forces
             //  4. show/hide forces
             [UIView animateKeyframesWithDuration:0.25 delay:0.0 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
-                [myDropItemsControl setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
                 [myDropItemsControl setHidden:YES];
                 [myDropItemsControl setAlpha:0.0];
-                [myPlaceForcesControl setTransform:CGAffineTransformMakeScale(1.0, 1.0)];
                 [myPlaceForcesControl setHidden:NO];
                 [myPlaceForcesControl setAlpha:1.0];
-                [myAdjustForcesStackView setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
+                [myPlaceForcesStackView setHidden:NO];
+                [myPlaceForcesStackView setAlpha:1.0];
+                
                 [myAdjustForcesStackView setHidden:YES];
                 [myAdjustForcesStackView setAlpha:0.0];
-                [myShowHideForcesStackView setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
             } completion:^(BOOL finished) {
                 [myAdjustForcesStackView setHidden:YES];
                 [myAdjustForcesStackView setAlpha:0.0];
@@ -525,7 +557,6 @@ float myLastTime = 0;
         }
         case 3:
         {
-            
             // order of menus is:
             //
             //  1. drop items
@@ -534,19 +565,19 @@ float myLastTime = 0;
             //  4. show/hide forces
             //
             [UIView animateKeyframesWithDuration:0.25 delay:0.0 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
-                [myAdjustForcesStackView setTransform:CGAffineTransformMakeScale(1.0, 1.0)];
-                [myDropItemsControl setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
-                [myPlaceForcesControl setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
-                [myShowHideForcesStackView setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
                 [myAdjustForcesStackView setHidden:NO];
                 [myAdjustForcesStackView setAlpha:1.0];
                 [myPlaceForcesControl setHidden:YES];
                 [myPlaceForcesControl setAlpha:0.0];
+                [myPlaceForcesStackView setHidden:YES];
+                [myPlaceForcesStackView setAlpha:0.0];
             } completion:^(BOOL finished) {
                 [myDropItemsControl setHidden:YES];
                 [myDropItemsControl setAlpha:0.0];
                 [myPlaceForcesControl setHidden:YES];
                 [myPlaceForcesControl setAlpha:0.0];
+                [myPlaceForcesStackView setHidden:YES];
+                [myPlaceForcesStackView setAlpha:0.0];
                 [myShowHideForcesStackView setHidden:YES];
                 [myShowHideForcesStackView setAlpha:0.0];
                 // show the show hide menu
@@ -577,10 +608,6 @@ float myLastTime = 0;
             //  4. show/hide forces
             //
             [UIView animateKeyframesWithDuration:0.25 delay:0.0 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
-                [myShowHideForcesStackView setTransform:CGAffineTransformMakeScale(1.0, 1.0)];
-                [myDropItemsControl setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
-                [myPlaceForcesControl setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
-                [myAdjustForcesStackView setTransform:CGAffineTransformMakeScale(0.0, 0.0)];
                 [myAdjustForcesStackView setHidden:YES];
                 [myAdjustForcesStackView setAlpha:0.0];
                 [myShowHideForcesStackView setHidden:NO];
@@ -590,14 +617,42 @@ float myLastTime = 0;
                 [myDropItemsControl setAlpha:0.0];
                 [myPlaceForcesControl setHidden:YES];
                 [myPlaceForcesControl setAlpha:0.0];
+                [myPlaceForcesStackView setHidden:YES];
+                [myPlaceForcesStackView setAlpha:0.0];
                 // show the show hide menu
             }];
-            
-            
-            
-  //              [myShowHideForcesStackView setTransform:CGAffineTransformMakeScale(myMenuScale,myMenuScale)];
-                
-            //}];
+            if (myDirection == myUpDirection) {
+                myMenuNumber++;
+            }
+            else if (myDirection == myDownDirection) {
+                myMenuNumber--;
+            }
+            break;
+        }
+        case 5:
+        {
+            //
+            // hide the adjust forces menu
+            // show the show/hide forces menu
+            //
+            // [UIView animateWithDuration:0.5 animations:^{
+            // order of menus is:
+            //
+            //  1. drop items
+            //  2. place forces
+            //  3. adjust forces
+            //  4. show/hide forces
+            //  5. hide all
+            //
+            [UIView animateKeyframesWithDuration:0.25 delay:0.0 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
+            } completion:^(BOOL finished) {
+                [myAdjustForcesStackView setHidden:YES];
+                [myShowHideForcesStackView setHidden:YES];
+                [myPlaceForcesStackView setHidden:YES];
+                [myPlaceForcesControl setHidden:YES];
+                [myDropItemsControl setHidden:YES];
+                // show the show hide menu
+            }];
             if (myDirection == myUpDirection) {
                 myMenuNumber = 1;
             }
@@ -606,6 +661,9 @@ float myLastTime = 0;
             }
             break;
         }
+
+            
+            
         default:
             break;
     }

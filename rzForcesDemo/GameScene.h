@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import <Replaykit/ReplayKit.h>
+#import <sys/utsname.h>
 
 @interface GameScene : SKScene
 
@@ -25,7 +26,7 @@
 @property UIStackView *myShowHideForcesStackView;
 @property UIStackView *myAdjustForcesStackView;
 @property UIStackView *myScreenRecorderStackView;
-
+@property UIStackView *myPlaceForcesStackView;
 
 
 @property UIButton *myRecordButton;

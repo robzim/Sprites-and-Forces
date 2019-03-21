@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LVB-YS-i5n">
-    <device id="ipad12_9" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LVB-YS-i5n">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,159 +18,289 @@
                         <viewControllerLayoutGuide type="bottom" id="b3d-qh-BLL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bdc-N1-crn" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <stackView tag="9999" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="nZF-Aq-0yW" userLabel="Controls Stack View">
-                                <rect key="frame" x="379" y="583" width="266" height="200"/>
+                            <stackView tag="9999" contentMode="center" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="nZF-Aq-0yW" userLabel="Controls Stack View">
+                                <rect key="frame" x="45.5" y="104.5" width="229" height="272"/>
                                 <subviews>
-                                    <stackView opaque="NO" tag="999" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="ScL-tW-xJF" userLabel="my Drop Items Stack View">
-                                        <rect key="frame" x="20" y="0.0" width="226" height="30"/>
+                                    <stackView hidden="YES" opaque="NO" tag="303" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="8hE-YX-SAH" userLabel="ShowHide Stack View">
+                                        <rect key="frame" x="40.5" y="86" width="148" height="100"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNb-r6-OV4">
-                                                <rect key="frame" x="0.0" y="0.0" width="41" height="30"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Trails"/>
-                                                <connections>
-                                                    <action selector="myTrailsButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="DWr-kL-Ntb"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGw-ao-sHd" userLabel="Colors">
-                                                <rect key="frame" x="50" y="0.0" width="48" height="30"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Colors"/>
-                                                <connections>
-                                                    <action selector="myColorsButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="al8-Nm-akS"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSC-fX-iAT">
-                                                <rect key="frame" x="107" y="0.0" width="64" height="30"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Textures"/>
-                                                <connections>
-                                                    <action selector="myTexturesButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="rUy-db-Xoo"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQO-Bt-piN">
-                                                <rect key="frame" x="180" y="0.0" width="46" height="30"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Space"/>
-                                                <connections>
-                                                    <action selector="mySpaceButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="GxS-jn-8yD"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView hidden="YES" opaque="NO" tag="303" contentMode="scaleToFill" alignment="top" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="8hE-YX-SAH" userLabel="ShowHide Stack View">
-                                        <rect key="frame" x="59" y="34" width="148" height="49"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ic3-Y4-d9W" userLabel="Trails Stack View">
-                                                <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show / Hide" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCu-zm-tZf">
+                                                <rect key="frame" x="0.0" y="0.0" width="148" height="0.0"/>
+                                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <size key="shadowOffset" width="2" height="-3"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="UJv-Xm-yIE">
+                                                <rect key="frame" x="0.0" y="50" width="148" height="0.0"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trails" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvA-H3-7dF">
-                                                        <rect key="frame" x="0.0" y="0.0" width="49" height="18"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yWe-U8-TT9">
-                                                        <rect key="frame" x="0.0" y="18" width="51" height="31"/>
-                                                        <connections>
-                                                            <action selector="myTrailsSwitchValueChanged:" destination="LVB-YS-i5n" eventType="valueChanged" id="WgV-Cf-Zz0"/>
-                                                        </connections>
-                                                    </switch>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ic3-Y4-d9W" userLabel="Trails Stack View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="49" height="0.0"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trails" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvA-H3-7dF">
+                                                                <rect key="frame" x="0.0" y="0.0" width="49" height="0.0"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <variation key="heightClass=regular-widthClass=regular">
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                                </variation>
+                                                            </label>
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yWe-U8-TT9">
+                                                                <rect key="frame" x="0.0" y="0.0" width="51" height="0.0"/>
+                                                                <connections>
+                                                                    <action selector="myTrailsSwitchValueChanged:" destination="LVB-YS-i5n" eventType="valueChanged" id="WgV-Cf-Zz0"/>
+                                                                </connections>
+                                                            </switch>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gd8-Eg-e0m" userLabel="Forces Stack View">
+                                                        <rect key="frame" x="99" y="0.0" width="49" height="0.0"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forces" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpI-vL-KBe">
+                                                                <rect key="frame" x="0.0" y="0.0" width="49" height="0.0"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <variation key="heightClass=regular-widthClass=regular">
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                                </variation>
+                                                            </label>
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Naz-61-rd7">
+                                                                <rect key="frame" x="0.0" y="0.0" width="51" height="0.0"/>
+                                                                <connections>
+                                                                    <action selector="myForcesSwitchValueChanged:" destination="LVB-YS-i5n" eventType="valueChanged" id="Y63-BX-dvY"/>
+                                                                </connections>
+                                                            </switch>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gd8-Eg-e0m" userLabel="Forces Stack View">
-                                                <rect key="frame" x="99" y="0.0" width="49" height="49"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forces" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpI-vL-KBe">
-                                                        <rect key="frame" x="0.0" y="0.0" width="49" height="18"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Naz-61-rd7">
-                                                        <rect key="frame" x="0.0" y="18" width="51" height="31"/>
-                                                        <connections>
-                                                            <action selector="myForcesSwitchValueChanged:" destination="LVB-YS-i5n" eventType="valueChanged" id="Y63-BX-dvY"/>
-                                                        </connections>
-                                                    </switch>
-                                                </subviews>
-                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show / Hide" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Anq-Hp-0la">
+                                                <rect key="frame" x="0.0" y="100" width="148" height="0.0"/>
+                                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <size key="shadowOffset" width="2" height="-3"/>
+                                            </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView hidden="YES" opaque="NO" tag="202" contentMode="scaleToFill" alignment="bottom" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="L2O-eh-li8" userLabel="Forces Stack View">
-                                        <rect key="frame" x="29.5" y="87" width="207" height="81"/>
+                                    <stackView opaque="NO" tag="999" contentMode="scaleToFill" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="ScL-tW-xJF" userLabel="my Drop Items Stack View">
+                                        <rect key="frame" x="0.0" y="0.0" width="229" height="272"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XU0-BA-Zgi" userLabel="Vortex Stack View">
-                                                <rect key="frame" x="0.0" y="0.0" width="94" height="81"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drop Items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkp-a6-jJQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="229" height="21"/>
+                                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <size key="shadowOffset" width="2" height="-3"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gzl-3I-N34">
+                                                <rect key="frame" x="0.0" y="121" width="229" height="30"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" tag="111" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vortex = 1.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xA8-Rl-cEC">
-                                                        <rect key="frame" x="2" y="0.0" width="90.5" height="18"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minimumValue="-50" maximumValue="50" stepValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="U2O-JR-Yr8" userLabel="myVortexStepper">
-                                                        <rect key="frame" x="0.0" y="18" width="94" height="29"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNb-r6-OV4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="41" height="30"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                        <state key="normal" title="Trails"/>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                        </variation>
                                                         <connections>
-                                                            <action selector="myVortexStepperPressed:" destination="LVB-YS-i5n" eventType="valueChanged" id="cLI-Vn-9tA"/>
+                                                            <action selector="myTrailsButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="DWr-kL-Ntb"/>
                                                         </connections>
-                                                    </stepper>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oee-uf-lgP">
-                                                        <rect key="frame" x="24" y="47" width="46" height="34"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                        <state key="normal" title="Reset"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGw-ao-sHd" userLabel="Colors">
+                                                        <rect key="frame" x="51" y="0.0" width="48" height="30"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                        <state key="normal" title="Colors"/>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                        </variation>
                                                         <connections>
-                                                            <action selector="myResetVortexButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="riH-nF-hsR"/>
+                                                            <action selector="myColorsButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="al8-Nm-akS"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSC-fX-iAT">
+                                                        <rect key="frame" x="109" y="0.0" width="64" height="30"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                        <state key="normal" title="Textures"/>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="myTexturesButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="rUy-db-Xoo"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQO-Bt-piN">
+                                                        <rect key="frame" x="183" y="0.0" width="46" height="30"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                        <state key="normal" title="Space"/>
+                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="mySpaceButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="GxS-jn-8yD"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tvu-57-2EX" userLabel="Gravity Stack View">
-                                                <rect key="frame" x="112" y="0.0" width="95" height="81"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" tag="222" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gravity = 1.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wng-nI-q9y">
-                                                        <rect key="frame" x="0.0" y="0.0" width="95" height="18"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="-10" maximumValue="10" stepValue="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="Rp5-uw-qi7" userLabel="myGravityStepper">
-                                                        <rect key="frame" x="0.5" y="18" width="94" height="29"/>
-                                                        <connections>
-                                                            <action selector="myGravityStepperPressed:" destination="LVB-YS-i5n" eventType="valueChanged" id="ggn-sM-tPc"/>
-                                                        </connections>
-                                                    </stepper>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppm-VJ-iHY">
-                                                        <rect key="frame" x="24.5" y="47" width="46" height="34"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                        <state key="normal" title="Reset"/>
-                                                        <connections>
-                                                            <action selector="myResetGravityButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="FAS-UO-dbf"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drop Items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8D-cU-HIJ">
+                                                <rect key="frame" x="0.0" y="251" width="229" height="21"/>
+                                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <size key="shadowOffset" width="2" height="-3"/>
+                                            </label>
                                         </subviews>
                                     </stackView>
-                                    <segmentedControl hidden="YES" opaque="NO" tag="888" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lNp-lP-2FU">
-                                        <rect key="frame" x="0.0" y="172" width="266" height="29"/>
-                                        <segments>
-                                            <segment title="Vortex"/>
-                                            <segment title="Gravity"/>
-                                            <segment title="Anti-Gravity"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="myBottomControlValueChanged:" destination="LVB-YS-i5n" eventType="valueChanged" id="mh8-kw-WC5"/>
-                                        </connections>
-                                    </segmentedControl>
+                                    <stackView hidden="YES" opaque="NO" tag="202" contentMode="scaleToFill" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="L2O-eh-li8" userLabel="Forces Stack View">
+                                        <rect key="frame" x="10" y="-9.5" width="209" height="291"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjust Forces" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTS-Rz-48o">
+                                                <rect key="frame" x="0.0" y="0.0" width="209" height="0.0"/>
+                                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <size key="shadowOffset" width="2" height="-3"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="KH3-yZ-Vvc">
+                                                <rect key="frame" x="0.0" y="100" width="209" height="91"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XU0-BA-Zgi" userLabel="Vortex Stack View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="91"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" tag="111" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Vortex = 1.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xA8-Rl-cEC">
+                                                                <rect key="frame" x="2" y="0.0" width="90.5" height="18"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                                <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <variation key="heightClass=regular-widthClass=compact">
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                </variation>
+                                                            </label>
+                                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minimumValue="-50" maximumValue="50" stepValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="U2O-JR-Yr8" userLabel="myVortexStepper">
+                                                                <rect key="frame" x="0.0" y="23" width="94" height="29"/>
+                                                                <connections>
+                                                                    <action selector="myVortexStepperPressed:" destination="LVB-YS-i5n" eventType="valueChanged" id="cLI-Vn-9tA"/>
+                                                                </connections>
+                                                            </stepper>
+                                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oee-uf-lgP">
+                                                                <rect key="frame" x="24" y="57" width="46" height="34"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                <state key="normal" title="Reset"/>
+                                                                <variation key="heightClass=regular-widthClass=regular">
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                                </variation>
+                                                                <connections>
+                                                                    <action selector="myResetVortexButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="riH-nF-hsR"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tvu-57-2EX" userLabel="Gravity Stack View">
+                                                        <rect key="frame" x="114" y="0.0" width="95" height="91"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" tag="222" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Gravity = 1.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wng-nI-q9y">
+                                                                <rect key="frame" x="0.0" y="0.0" width="95" height="18"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                                <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <variation key="heightClass=regular-widthClass=compact">
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                </variation>
+                                                            </label>
+                                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="-10" maximumValue="10" stepValue="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="Rp5-uw-qi7" userLabel="myGravityStepper">
+                                                                <rect key="frame" x="0.5" y="23" width="94" height="29"/>
+                                                                <connections>
+                                                                    <action selector="myGravityStepperPressed:" destination="LVB-YS-i5n" eventType="valueChanged" id="ggn-sM-tPc"/>
+                                                                </connections>
+                                                            </stepper>
+                                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppm-VJ-iHY">
+                                                                <rect key="frame" x="24.5" y="57" width="46" height="34"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                <state key="normal" title="Reset"/>
+                                                                <variation key="heightClass=regular-widthClass=regular">
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                                </variation>
+                                                                <connections>
+                                                                    <action selector="myResetGravityButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="FAS-UO-dbf"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjust Forces" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIu-eG-vTg">
+                                                <rect key="frame" x="0.0" y="291" width="209" height="0.0"/>
+                                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <size key="shadowOffset" width="2" height="-3"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView hidden="YES" opaque="NO" tag="887" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="l0M-b2-Isa" userLabel="Place Forces Stack View">
+                                        <rect key="frame" x="-18.5" y="36" width="266" height="200"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place Forces" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1v-Cv-TKo">
+                                                <rect key="frame" x="88" y="0.0" width="90" height="0.0"/>
+                                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <size key="shadowOffset" width="2" height="-3"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" tag="888" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lNp-lP-2FU">
+                                                <rect key="frame" x="0.0" y="100" width="266" height="1"/>
+                                                <segments>
+                                                    <segment title="Vortex"/>
+                                                    <segment title="Gravity"/>
+                                                    <segment title="Anti-Gravity"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="myBottomControlValueChanged:" destination="LVB-YS-i5n" eventType="valueChanged" id="mh8-kw-WC5"/>
+                                                </connections>
+                                            </segmentedControl>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place Forces" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bw-TF-QAI">
+                                                <rect key="frame" x="88" y="200" width="90" height="0.0"/>
+                                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <size key="shadowOffset" width="2" height="-3"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="L2O-eh-li8" firstAttribute="centerY" secondItem="nZF-Aq-0yW" secondAttribute="centerY" id="Hcc-zb-XbM"/>
+                                    <constraint firstItem="l0M-b2-Isa" firstAttribute="centerY" secondItem="nZF-Aq-0yW" secondAttribute="centerY" id="KfY-sW-D71"/>
+                                    <constraint firstItem="L2O-eh-li8" firstAttribute="centerX" secondItem="nZF-Aq-0yW" secondAttribute="centerX" id="fAs-TI-og3"/>
+                                    <constraint firstItem="8hE-YX-SAH" firstAttribute="centerY" secondItem="nZF-Aq-0yW" secondAttribute="centerY" id="gCE-Mt-8sx"/>
+                                    <constraint firstItem="8hE-YX-SAH" firstAttribute="centerX" secondItem="nZF-Aq-0yW" secondAttribute="centerX" id="zml-jo-tcb"/>
+                                </constraints>
                             </stackView>
                             <stackView opaque="NO" tag="101" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Bef-aT-ZZr">
                                 <rect key="frame" x="411" y="5" width="203" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" tag="1011" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrd-TZ-8rj">
                                         <rect key="frame" x="0.0" y="0.0" width="49" height="32"/>
@@ -198,11 +328,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Bef-aT-ZZr" firstAttribute="centerX" secondItem="bdc-N1-crn" secondAttribute="centerX" id="50G-xX-SoN"/>
-                            <constraint firstItem="Bef-aT-ZZr" firstAttribute="top" secondItem="bdc-N1-crn" secondAttribute="topMargin" constant="5" id="kLD-Ow-vLG"/>
-                            <constraint firstItem="nZF-Aq-0yW" firstAttribute="centerX" secondItem="bdc-N1-crn" secondAttribute="centerX" id="kuB-yo-eXc"/>
-                            <constraint firstItem="nZF-Aq-0yW" firstAttribute="centerY" secondItem="bdc-N1-crn" secondAttribute="centerY" id="uG0-KB-qgH"/>
+                            <constraint firstItem="nZF-Aq-0yW" firstAttribute="centerY" secondItem="bdc-N1-crn" secondAttribute="centerY" id="1Nh-wq-s2o"/>
+                            <constraint firstItem="nZF-Aq-0yW" firstAttribute="centerX" secondItem="bdc-N1-crn" secondAttribute="centerX" id="eNX-xW-eZp"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Bef-aT-ZZr"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="myForcesSwitch" destination="Naz-61-rd7" id="2bX-ca-7du"/>
